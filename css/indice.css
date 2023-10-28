@@ -1,0 +1,39 @@
+.cuerpo
+{
+    background-color: beige;
+    margin-top: 2px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.centrar
+{
+    text-align: center;
+}
+
+.contenedor
+{
+    display:block;
+}
+
+.centrar-imagen
+{
+    max-width: 100%;
+    min-width: 100px;
+}
+
+.contenedor-flex
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.item-flex
+{
+    width: 38%;
+}
+
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+  } 

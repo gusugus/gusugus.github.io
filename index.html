@@ -4,6 +4,7 @@
         <title>Consola web</title>
         <meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0;   user-scalable=0;" name="viewport">        
         <link rel="stylesheet" href="css/indice.css">
+        <link rel="stylesheet" href="css/modal.css">
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -48,7 +49,7 @@
     </div>
    
 
-    <div id="modals-container"></div>
+    <div id="modals-container" class="centrar" role="dialog"></div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
@@ -159,7 +160,10 @@ function createTemaModal(tema) {
         const modal = $('<div>', {
             class: 'modal',
             id: 'temaModal'
-        }).html(`
+        }).html(` <div class="centrar modal_margen ">
+            <a href="#close-modal" rel="modal:close" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </a>
             <h2>Pregunta ${currentQuestion + 1} del Tema ${tema}</h2>
             <p>${temas[tema - 1].preguntas[currentQuestion].pregunta}</p>
             <div>
@@ -169,6 +173,7 @@ function createTemaModal(tema) {
                 <input type="radio" name="respuesta" value="3" id="opcion3"> <label for="opcion3">${temas[tema - 1].preguntas[currentQuestion].opciones[3]}</label>
             </div>
             <button onclick="checkAnswer(${tema})">Calificar</button>
+            <div>
         `);
         modalContainer.empty();
         modalContainer.append(modal);

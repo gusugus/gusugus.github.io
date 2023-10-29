@@ -1,40 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preguntas por Tema</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css">
-    <style>
-        /* Estilos para el botón */
-        .btn {
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
-        /* Estilos para el modal */
-        .modal {
-            background-color: #fff;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        }
-    </style>
-</head>
-<body>
-    <h1>Preguntas por Tema</h1>
+<html lang="es">
+    <head>
+        <title>Consola web</title>
+        <meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0;   user-scalable=0;" name="viewport">        
+        <link rel="stylesheet" href="css/indice.css">
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div class="cuerpo">
+            <div class="contendor">
+                <h1 class="centrar">PREGUNTAS PARA GUIA DE APRENDIZAJE</h1>
+            </div>
+            <div class="contenedor">
+                <div class="centrar">
+                    <img class="centrar-imagen" src="https://www.monocubed.com/wp-content/uploads/2021/06/AngularJS.jpg" alt="Imagen de inicio">
+                </div>
+            </div>  
+            <div class="contenedor">
+                <h1 class="centrar">CICLO DE GRAYTON</h1>
+            </div>
+ 
+
+            <div class="contenedor-flex centrar">
+                <div class="item-flex">
+                    <button class="btn btn-primary" type="button"  id="btnTema1" value="Compresor">Compresor</button> 
+                </div>
+                <div class="item-flex">
+                    <button class="btn btn-primary" type="button" id="btnTema2" value="Calentamiento" disabled>Calentamiento</button> 
+                </div>
+                <div class="item-flex">
+                    <button class="btn btn-primary" type="button" id="btnTema3" value="Turbina" disabled>Turbina</button> 
+                </div>
+                <div class="item-flex">
+                    <button class="btn btn-primary" type="button" id="btnTema4" value="x" disabled>XYZ</button> 
+                </div>
+            </div>
+        </div>
 
     <div id="feedbackModal" style="display:none;">
         <h2>Retroalimentación</h2>
         <p id="feedbackMessage"></p>
         <button class="close-feedback-modal" data-modal="#feedbackModal">Cerrar Retroalimentación</button>
     </div>
-    
-    <button  id="btnTema1" type="button" >Tema 1</button>
-    <button  id="btnTema2" type="button" disabled>Tema 2</button>
-    <button  id="btnTema3" type="button" disabled>Tema 3</button>
-    <button  id="btnTema4" type="button" disabled>Tema 4</button>
-    <button type="button" disabled>Click Me!</button> 
+   
 
     <div id="modals-container"></div>
 

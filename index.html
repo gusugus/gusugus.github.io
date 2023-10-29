@@ -1,71 +1,283 @@
 <!DOCTYPE html>
-<html lang="es">
-    <head>
-        <title>Consola web</title>
-        <meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0;   user-scalable=0;" name="viewport">        
-        <link rel="stylesheet" href="css/indice.css">
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    </head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas por Tema</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css">
+    <style>
+        /* Estilos para el botón */
+        .btn {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        /* Estilos para el modal */
+        .modal {
+            background-color: #fff;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>Preguntas por Tema</h1>
 
-    <body >
-        <div class="cuerpo">
-            <div class="contendor">
-                <h1 class="centrar">PREGUNTAS PARA GUIA DE APRENDIZAJE</h1>
-            </div>
-            <div class="contenedor">
-                <div class="centrar">
-                    <img class="centrar-imagen" src="https://www.monocubed.com/wp-content/uploads/2021/06/AngularJS.jpg" alt="Imagen de inicio">
-                </div>
-            </div>  
-            <div class="contenedor">
-                <h1 class="centrar">CICLO DE GRAYTON</h1>
-            </div>
-
-            <div id="myModal" style="display: none;">
-                <iframe id="modal-content" width="100%" height="100%"></iframe>
-            </div>
-
-
-            <div class="contenedor-flex centrar">
-                <div class="item-flex">
-                    <a class="btn btn-primary"  href="ajax.html" rel="modal:open" id="boton_tema1" value="Compresor" onclick="abrirTema(this);">Compresor</a> 
-                </div>
-                <div class="item-flex">
-                    <a class="btn btn-primary disabled" href="#ex1" rel="modal:open" id="boton_tema2" value="Calentamiento" >Calentamiento</a> 
-                </div>
-                <div class="item-flex">
-                    <a class="btn btn-primary disabled" href="#ex1" rel="modal:open" id="boton_tema3" value="Turbina">Turbina</a> 
-                </div>
-                <div class="item-flex">
-                    <a href="#" id="open-modal">Abrir Modal</a>
-                </div>
-            </div>
-        </div>
-
-        <script>
-            var tema_actual = "";
-            var temas_pasados = 0;
-
-                $(document).ready(function() {
-        $("#open-modal").click(function() {
-          var modalContent = $("#modal-content");
-          modalContent.attr("src", "contenedor.html");
-          $("#myModal").dialog({
-            modal: true,
-            width: "auto",
-            height: "auto"
-          });
-          return false; // Evita que el enlace redirija a una nueva página
-        });
-      });
-    </script>
-
+    <div id="feedbackModal" style="display:none;">
+        <h2>Retroalimentación</h2>
+        <p id="feedbackMessage"></p>
+        <button class="close-feedback-modal" data-modal="#feedbackModal">Cerrar Retroalimentación</button>
+    </div>
     
+    <button  id="btnTema1" type="button" >Tema 1</button>
+    <button  id="btnTema2" type="button" disabled>Tema 2</button>
+    <button  id="btnTema3" type="button" disabled>Tema 3</button>
+    <button  id="btnTema4" type="button" disabled>Tema 4</button>
+    <button type="button" disabled>Click Me!</button> 
 
-           
-    </body>
+    <div id="modals-container"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script>
+        var currentQuestion = 0; // Contador de preguntas
+        var temaActual = 1; // Tema actual
+        var intentos = 0; // Contador de intentos
+        var temas = [
+            {
+                preguntas: [
+                    {
+                        pregunta: "Pregunta 1 del Tema 1",
+                        opciones: ["Opción A", "Opción B", "Opción C", "Opción D"],
+                        respuestaCorrecta: 3
+                    },
+                    {
+                        pregunta: "Pregunta 2 del Tema 1",
+                        opciones: ["Opción A", "Opción B", "Opción C", "Opción D"],
+                        respuestaCorrecta: 0
+                    },
+                    {
+                        pregunta: "Pregunta 3 del Tema 1",
+                        opciones: ["Opción A", "Opción B", "Opción C", "Opción D"],
+                        respuestaCorrecta: 3
+                    }
+                ]
+            },
+
+           {//2
+            preguntas: [
+                    {
+                        pregunta: "Pregunta 1 del Tema 2",
+                        opciones: ["Opción A", "Opción B", "Opción C", "Opción D"],
+                        respuestaCorrecta: 1
+                    },
+                    {
+                        pregunta: "Pregunta 2 del Tema 2",
+                        opciones: ["Opción A", "Opción B", "Opción C", "Opción D"],
+                        respuestaCorrecta: 0
+                    },
+                    {
+                        pregunta: "Pregunta 3 del Tema 2",
+                        opciones: ["Opción A", "Opción B", "Opción C", "Opción D"],
+                        respuestaCorrecta: 0
+                    }
+                ]
+           },
+
+           {
+            preguntas: [
+                    {
+                        pregunta: "Pregunta 1 del Tema 3",
+                        opciones: ["Opción A", "Opción B", "Opción C", "Opción D"],
+                        respuestaCorrecta: 1
+                    },
+                    {
+                        pregunta: "Pregunta 2 del Tema 3",
+                        opciones: ["Opción A", "Opción B", "Opción C", "Opción D"],
+                        respuestaCorrecta: 0
+                    },
+                    {
+                        pregunta: "Pregunta 3 del Tema 3",
+                        opciones: ["Opción A", "Opción B", "Opción C", "Opción D"],
+                        respuestaCorrecta: 2
+                    }
+                ]
+           }              
+            
+            // ... (otros temas)
+        ];
+
+
+
+        // Asociar eventos de clic a los botones por tema
+        $('#btnTema1').on('click', function() {
+            currentQuestion = 0; // Reiniciar el contador de preguntas
+            temaActual = 1; // Reiniciar el tema actual
+            createTemaModal(1);
+        });
+
+        // Asociar eventos de clic a los botones por tema
+        $('#btnTema2').on('click', function() {
+            currentQuestion = 0; // Reiniciar el contador de preguntas
+            temaActual = 2; // Reiniciar el tema actual
+            createTemaModal(2);
+        });
+
+        // Asociar eventos de clic a los botones por tema
+        $('#btnTema3').on('click', function() {
+            currentQuestion = 0; // Reiniciar el contador de preguntas
+            temaActual = 3; // Reiniciar el tema actual
+            createTemaModal(3);
+        });
+
+        // Asociar eventos de clic a los botones por tema
+        $('#btnTema4').on('click', function() {
+            currentQuestion = 0; // Reiniciar el contador de preguntas
+            temaActual = 4; // Reiniciar el tema actual
+            createTemaModal(4);
+        });
+
+
+        var modalContainer;
+        // Función para crear una ventana modal con pregunta y opciones de respuesta
+function createTemaModal(tema) {
+    if (temas[tema - 1] && currentQuestion < temas[tema - 1].preguntas.length) {
+        modalContainer = $("#modals-container");
+        const modal = $('<div>', {
+            class: 'modal',
+            id: 'temaModal'
+        }).html(`
+            <h2>Pregunta ${currentQuestion + 1} del Tema ${tema}</h2>
+            <p>${temas[tema - 1].preguntas[currentQuestion].pregunta}</p>
+            <div>
+                <input type="radio" name="respuesta" value="0" id="opcion0"> <label for="opcion0">${temas[tema - 1].preguntas[currentQuestion].opciones[0]}</label><br>
+                <input type="radio" name="respuesta" value="1" id="opcion1"> <label for="opcion1">${temas[tema - 1].preguntas[currentQuestion].opciones[1]}</label><br>
+                <input type="radio" name="respuesta" value="2" id="opcion2"> <label for="opcion2">${temas[tema - 1].preguntas[currentQuestion].opciones[2]}</label><br>
+                <input type="radio" name="respuesta" value="3" id="opcion3"> <label for="opcion3">${temas[tema - 1].preguntas[currentQuestion].opciones[3]}</label>
+            </div>
+            <button onclick="checkAnswer(${tema})">Calificar</button>
+        `);
+        modalContainer.empty();
+        modalContainer.append(modal);
+        modal.modal();
+    } else {
+        const resultadoModal = $('<div>', {
+            class: 'modal',
+            id: 'resultadoModal'
+        }).html(`
+            <h2>Resultados del Tema ${tema}</h2>
+            ${getResults(tema)}
+        `);
+        modalContainer.empty();
+        modalContainer.append(resultadoModal);
+        resultadoModal.modal();
+    }
+}
+
+var rptas = {};
+
+   // Función para calificar la respuesta
+// Función para calificar la respuesta
+function checkAnswer(tema) {
+    const temaIndex = tema - 1;
+    if (temas[temaIndex] && currentQuestion < temas[temaIndex].preguntas.length) {
+        const selectedAnswer = $('input[name="respuesta"]:checked').val();
+        const respuestaCorrecta = temas[temaIndex].preguntas[currentQuestion].respuestaCorrecta;
+
+        if (selectedAnswer === respuestaCorrecta.toString()) {
+            // Respuesta Correcta
+            rptas[temaIndex+";"+currentQuestion] = 1;
+            currentQuestion++;
+            if (currentQuestion < temas[temaIndex].preguntas.length) {
+                intentos = 0; // Reiniciar los intentos
+                createTemaModal(tema);
+            } else {
+                enableNextTemaButton();
+            }
+        } else {
+            // Respuesta Incorrecta
+            rptas[temaIndex+";"+currentQuestion]=0;
+            intentos++;
+            if (intentos < 2) {
+                showFeedbackModal("Respuesta Incorrecta. Intenta de nuevo.");
+            } else {
+                showFeedbackModal("Agotaste tus intentos para esta pregunta. Continúa con la siguiente.");
+                currentQuestion++;
+                intentos = 0; // Reiniciar los intentos
+                if (currentQuestion < temas[temaIndex].preguntas.length) {
+                    createTemaModal(tema);
+                } else {
+                    enableNextTemaButton();
+                }
+            }
+        }
+    }
+
+    if (currentQuestion >= temas[temaIndex].preguntas.length) {
+        // Se han respondido todas las preguntas del tema
+        const resultadoModal = $('<div>', {
+            class: 'modal',
+            id: 'resultadoModal'
+        }).html(`
+            <h2>Resultados del Tema ${tema}</h2>
+            ${getResults(tema)}
+        `);
+        modalContainer.empty();
+        modalContainer.append(resultadoModal);
+        resultadoModal.modal();
+    }
+}
+
+function showFeedbackModal(message) {
+    const resultadoModal = $('<div>', {
+        class: 'modal',
+        id: 'resultadoModal'
+    }).html(`
+        <h1>Lo hiciste mal </h1>
+        <button class="close-feedback-modal" data-modal="#feedbackModal">Cerrar Retroalimentación</button>
+    `);
+    modalContainer.empty();
+    modalContainer.append(resultadoModal);
+    resultadoModal.modal();
+}
+// Evento para cerrar el modal de retroalimentación
+$(document).on('click', '.close-feedback-modal', function() {
+    createTemaModal(temaActual);
+});
+
+
+
+        // Función para obtener los resultados del tema
+function getResults(tema) {
+    const temaIndex = tema - 1;
+    const temaPreguntas = temas[temaIndex].preguntas;
+    let results = "";
+    //rptas[temaIndex+";"+currentQuestion]
+    for (let i = 0; i < temaPreguntas.length; i++) {
+        let str = rptas[temaIndex+";"+i];
+        results += `<p>Pregunta ${i + 1}: ${str == '1' ? 'Correcta' : 'Incorrecta'}</p>`;
+    }
+
+    return results;
+}
+
+        // Función para habilitar el siguiente botón de tema
+        function enableNextTemaButton() {
+            temaActual++;
+            console.log("Habilita eel tema "+temaActual);
+
+            if (temaActual >= 2) {
+                $('#btnTema2').prop('disabled', false);
+            }
+            if (temaActual >= 3) {
+                $('#btnTema3').prop('disabled', false);
+            }
+            if (temaActual >= 4) {
+                $('#btnTema4').prop('disabled', false);
+            }
+        }
+
+    </script>
+</body>
 </html>

@@ -4,7 +4,7 @@
         {
             "id": 1,
             "numero_pregunta": 1,
-            "cabeza_pregunta": "Cuanto es 1 mas uno?",
+            "titulo_pregunta": "Cuanto es 1 mas uno?",
             "tipo_pregunta": "imagen",
             "url_pregunta": "https://www.monocubed.com/wp-content/uploads/2021/06/ember.jpg",
             "descripcion_pregunta": "Desarrolle por el metodo de dominios publicos",

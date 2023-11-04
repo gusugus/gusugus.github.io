@@ -1,9 +1,21 @@
+body
+{
+    background: aqua;
+    height: 100%;
+
+
+}
 .cuerpo
 {
     background-color: beige;
-    margin-top: 2px;
+    padding-top: 3vh;
     margin-left: 5px;
     margin-right: 5px;
+
+    height: 95vh;
+    display: block;
+    min-height: 95%;
+
 }
 
 .centrar
@@ -37,3 +49,42 @@ a.disabled {
     pointer-events: none;
     cursor: default;
   } 
+
+  .pregunta_inicio
+{
+    font-size: 35px;
+    text-emphasis: 200p;
+    font-weight: bold;
+}
+
+.estilo_imagen_inicial
+{
+    width: 275px;
+}
+
+.estilo_titulo_ciclo
+{
+    color: #153FE8;
+    font-size: xx-large;
+}   
+
+.justificar
+{
+    text-align: justify;
+}
+
+.padding-5
+{
+    padding-left: 5%;
+    padding-right: 3%;
+}
+
+.margen-boton
+{
+    margin-left:3%;
+}
+
+.resultados
+{
+    padding-top:3%;
+}

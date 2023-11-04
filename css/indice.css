@@ -12,9 +12,9 @@ body
     margin-left: 5px;
     margin-right: 5px;
 
-    height: 95vh;
+    height: 100%;
     display: block;
-    min-height: 95%;
+    min-height: 100%;
 
 }
 
@@ -37,13 +37,18 @@ body
 .contenedor-flex
 {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    width: calc(100% - (20px * 2));
+  margin: 20px;
+  padding:1%;
 }
 
 .item-flex
 {
-    width: 38%;
+    width: 50%;
+    padding:5%;
 }
+
 
 a.disabled {
     pointer-events: none;

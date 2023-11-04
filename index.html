@@ -62,15 +62,16 @@
                 <button class="btn btn-primary" type="button" id="btnTema1" value="Compresor">Compresor</button>
             </div>
             <div class="item-flex">
-                <button class="btn btn-primary" type="button" id="btnTema2" value="Calentamiento"
-                    disabled>Calentamiento</button>
+                <button class="btn btn-primary" type="button" id="btnTema2" value="Calentamiento" title="Realice antes Compresor"
+                    disabled>Calentamiento
+                </button>
             </div>
             <div class="item-flex">
-                <button class="btn btn-primary" type="button" id="btnTema3" value="Turbina" disabled>
+                <button class="btn btn-primary" type="button" id="btnTema3" value="Turbina" title="Realice antes Calentamiento"disabled>
                     Turbina</button>
             </div>
             <div class="item-flex">
-                <button class="btn btn-primary" type="button" id="btnTema4" value="x" disabled>
+                <button class="btn btn-primary" type="button" id="btnTema4" value="Enfriamiento" title="Realice antes Turbina" disabled>
                     Enfriamiento</button>
             </div>
 
@@ -160,8 +161,34 @@ let claseRptaImagen = `<div>
                 ${htmlRespuesta}
             <div>
             <button class="margen-boton" onclick="checkAnswer(${tema})">Calificar</button>
-            <div>
+            </div>
+
+            
         `);
+
+        
+        //Pone paginacion de preguntas anteriores
+        let temaIndex = tema-1;
+        let temaPreguntas = temas[temaIndex].preguntas;
+        let results = "";
+
+        
+        modal.append(`<div class="pagination " style="display:block">`);
+        modal.find('.pagination').empty();
+        for (let i = 0; i < temaPreguntas.length; i++) {
+            let str = rptas[temaIndex + ";" + i];
+            console.log(typeof(str));
+            if(typeof(str) !== 'undefined')
+            {
+                let num=i+1;        
+                results= ` ${str == '1' ? num+':<span><img src="imagenes/check.svg"></span>' :
+                    i+'<span><img src="imagenes/x.svg"></span>' } `;
+                modal.find('.pagination').append(results);
+            }
+            
+        }
+    modal.append(`</div>`);
+
                 modalContainer.empty();
                 modalContainer.append(modal);
                 modal.modal();
@@ -306,12 +333,15 @@ let claseRptaImagen = `<div>
 
             if (temaActual >= 2) {
                 $('#btnTema2').prop('disabled', false);
+                $('#btnTema2').prop('title', "");
             }
             if (temaActual >= 3) {
                 $('#btnTema3').prop('disabled', false);
+                $('#btnTema3').prop('title', "");
             }
             if (temaActual >= 4) {
                 $('#btnTema4').prop('disabled', false);
+                $('#btnTema4').prop('title', "");
             }
         }
 

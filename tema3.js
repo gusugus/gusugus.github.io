@@ -26,10 +26,10 @@ var preguntas3 = [
 
             {
                 pregunta: "¿Cuál de las opciones representa de mejor manera la relación presión - volumen en la turbina?",
-                opciones: ["t3p3o1.jpg", 
-                           "t3p3o2.jpg", 
-                           "t3p3o3.jpg", 
-                           "t3p3o4.jpg"],
+                opciones: ["imagenes/t3p3o1.jpg", 
+                           "imagenes/t3p3o2.jpg", 
+                           "imagenes/t3p3o3.jpg", 
+                           "imagenes/t3p3o4.jpg"],
                 tipoRespuesta:"imagen",
                 tipoPregunta:"texto",
                 respuestaCorrecta: 0

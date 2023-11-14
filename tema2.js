@@ -26,10 +26,10 @@ var preguntas2 = [
 
             {
                 pregunta: "¿Cuál de las opciones representa de mejor manera la relación presión – volumen en la combustión?",
-                opciones: ["t2p3o1.jpg", 
-                           "t2p3o2.jpg", 
-                           "t2p3o3.jpg", 
-                           "t2p3o4.jpg"],
+                opciones: ["imagenes/t2p3o1.jpg", 
+                           "imagenes/t2p3o2.jpg", 
+                           "imagenes/t2p3o3.jpg", 
+                           "imagenes/t2p3o4.jpg"],
                 tipoRespuesta:"imagen",
                 tipoPregunta:"texto",
                 respuestaCorrecta: 1

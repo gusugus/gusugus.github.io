@@ -31,13 +31,14 @@
 {
     display: block;
     margin-top: 2%;
-    margin-left:10%;
-    margin-right:10%;
-    height: 90%;
-
-    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(254,254,254,1) 0%, rgb(105 105 219) 100%);
+    margin-left:3%;
+    margin-right:3%;
+    height: 98vh;
+    background: #fff;
     animation: fadeIn 2s;
 }
+
+
 
 @keyframes goDown {
     0% {top: 0%;}
@@ -79,17 +80,18 @@
   border: 3px solid green;
 }
 
-.pregunta_item, .label_opcion
+.pregunta_item
 {
-    font-size: large;
-    font-weight: 300;
+    font-size: 1.5em;
+    font-weight: 200;
 }
 
 .pregunta_numero
 {
     text-decoration: underline;
-    font-size: large;
+    font-size: 2em;
     padding-top:3%;
+
 }
 
 
@@ -147,3 +149,73 @@
     visibility: visible;
     opacity: 1;
   }
+
+
+
+  .boton-modal-color {
+    display: inline-block;
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #4CAF50;
+    color: #4CAF50;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 5px;
+    white-space: normal;
+    height: 100%;
+    line-height: 1.5;
+}
+
+.boton-modal-color:hover {
+    background-color: #4CAF50;
+    color: white;
+    
+}
+
+  .button-container {
+    width: 85%;
+    height: auto;
+    position: absolute;
+    bottom: 0;
+    }
+
+    .body-botones {
+        font-family: 'Arial', sans-serif;
+            margin: 0;
+            display: grid;
+            grid-template-rows: 50% 50%; /* Dos filas de tamaño igual */
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px; /* Espaciado entre los elementos */
+    }
+
+    .grid-item {
+        border: 1px solid #ccc;
+        padding: 0px;
+        text-align: center;
+        
+    }
+
+.resultados
+{
+    padding-top:1%;
+    margin-top: 1%;
+}
+    
+.titulo-res
+{
+    font-size: 2em;
+}
+
+.results-tema
+{
+    font-size: 1.5em;
+}
+
+.alineacion_derecha
+{
+    text-align: right;
+}

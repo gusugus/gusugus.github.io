@@ -30,7 +30,7 @@
 .modal_margen
 {
     display: block;
-    margin-top: 2%;
+    padding-top: 1em;
     margin-left:3%;
     margin-right:3%;
     height: 98vh;
@@ -84,6 +84,15 @@
 {
     font-size: 1.5em;
     font-weight: 200;
+    height: fit-content;
+    padding-top: 6vh;
+    padding-left: 5%;
+    padding-right: 6%;
+    padding-bottom: 7vh;
+    color: white;
+    text-align: justify;
+    margin-left: 3%;
+    margin-right: 3%;
 }
 
 .pregunta_numero
@@ -218,4 +227,53 @@
 .alineacion_derecha
 {
     text-align: right;
+}
+
+
+
+.button-container .grid-item:nth-child(1) button {
+    border: 2px solid yellow;
+}
+
+.button-container .grid-item:nth-child(2) button {
+    border: 2px solid blue;
+}
+
+.button-container .grid-item:nth-child(3) button {
+    border: 2px solid red;
+}
+
+.button-container .grid-item:nth-child(4) button {
+    border: 2px solid green;   
+}
+
+.button-container .grid-item:nth-child(1) button:hover {
+    background-color: yellow;
+    color: white;    
+}
+
+.button-container .grid-item:nth-child(2) button:hover {
+    background-color: blue;
+    color: white;    
+}
+.button-container .grid-item:nth-child(3) button:hover {
+    background-color: red;
+    color: white;    
+}
+.button-container .grid-item:nth-child(4) button:hover {
+    background-color: green;
+    color: white;    
+}
+
+
+
+.mitad-derecha {
+    position: fixed;
+    top: 50%;
+    right: 5%;
+    transform: translate(0%, -50%);
+    background-color: red;
+    padding: 20px;
+    border-radius: 50%;
+    /* Otros estilos que desees aplicar */
 }

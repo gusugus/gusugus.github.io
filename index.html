@@ -184,8 +184,12 @@ let claseRptaImagen = `<div>
                 <span aria-hidden="true" style="color:red;">&times;</span>
             </a>
             <!--<h2>Tema ${tema}</h2>-->
-           <h1 class="pregunta_numero">Pregunta ${currentQuestion + 1}</h1> 
-            <p class="pregunta_item justificar padding-5">${temas[tema - 1].preguntas[currentQuestion].pregunta}</p>
+            <!--<h1 class="pregunta_numero">Pregunta ${currentQuestion + 1}</h1> -->
+            <div class="mitad-derecha">${currentQuestion + 1}/${temas[tema - 1].preguntas.length}</div>
+            <div>
+                <p class="pregunta_item justificar padding-5 fondo_pizarra">${temas[tema - 1].preguntas[currentQuestion].pregunta}</p>
+            </div>
+            
 
             <div class="justificar padding-5">
                 ${htmlRespuesta}

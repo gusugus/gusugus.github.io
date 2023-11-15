@@ -277,17 +277,21 @@ let claseRptaImagen = `<div>
                 <span aria-hidden="true" style="color:red;">&times;</span>
             </a>
                 <div class="resultados">
-                    <h2 class="titulo-res">Resultados del TemaX ${tema}</h2>
-                ${getResults(tema)}
-                <div class="button-container alineacion_derecha" >
+                    <h2 class="titulo-res">Score</h2>
+                    ${getResults(tema)}
+                    <button href="#close-modal" rel="modal:close" class="btn modal-cerrar" data-dismiss="modal" aria-label="Close" data-bs-target="#myModal">
+                            Cerrar
+                        </button>
                     
-                    <button href="#close-modal" rel="modal:close" class="btn btn-default" data-dismiss="modal" aria-label="Close" data-bs-target="#myModal">
-                        Cerrar
-                    </button>
-                    
-                        <button id="sgteTema" class="btn btn-default" onClick="sgteTema()">Siguiente Tema </button>
+                    <div class="separacion-botones">
+                        
+                        
+                        <button id="sgteTema" class="btn modal-sgte-tema alineacion_izquierda" onClick="sgteTema()">Siguiente Tema </button>
+                        <button id="repetirTema" class="btn modal-sgte-tema alineacion_derecha" onClick="repetirTema()">Repetir Tema </button>
                 
-                </div>
+                    </div>
+
+                    <div class="alineacion_izquier">
                 </div>
             </div>
         `);
@@ -422,10 +426,14 @@ let claseRptaImagen = `<div>
 
         function sgteTema()
         {
-            console.log("Sgte tema");
-            console.log(temaActual);
             currentQuestion = 0;
             createTemaModal(temaActual);
+        };
+
+        function repetirTema()
+        {
+            currentQuestion = 0;
+            createTemaModal(temaActual-1);
         };
 
         //Cuando se muestre el modal

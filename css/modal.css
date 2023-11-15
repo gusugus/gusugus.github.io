@@ -215,11 +215,22 @@
     font-size: 1.5em;
 }
 
+.separacion-botones
+{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 3%;
+    margin-right: 3%;
+}
 .alineacion_derecha
 {
-    text-align: right;
+    order: 1;
 }
 
+.alineacion_izquierda
+{
+    order: 2;
+}
 
 
 .button-container .grid-item:nth-child(1) button {
@@ -266,5 +277,33 @@
     background-color: red;
     padding: 20px;
     border-radius: 50%;
+    font-size: 2em;
+    color: white;
     /* Otros estilos que desees aplicar */
+}
+
+.imagen-retro
+{
+    width: 100%;
+}
+
+
+.modal-cerrar
+{
+background-color: red;
+position: absolute;
+top: 0%;
+right: 3%;
+
+
+}
+
+.modal-sgte-tema
+{
+    background-color: #3498db;
+}
+
+.modal-repetir-tema
+{
+    background-color: #3498db;
 }

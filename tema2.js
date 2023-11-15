@@ -103,7 +103,7 @@ var preguntas2 = [
                                             "<div><a  target='_blank' href='https://mechanicalboost.com/brayton-cycle/'>Enlace(Inglés) </a> </div>"+
                                             "<div><a  target='_blank' href='https://www.thermal-engineering.org/es/que-es-el-ciclo-de-brayton-procesos-ecuaciones-definicion/'>Enlace(Español) </a> </div>"
             }
-            
+
 
         ]
     }

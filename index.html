@@ -33,8 +33,12 @@
                     <div id="modal-body"></div>
                 </div>
                 <div class="modal-footer">
-                    <button id="closeMyModal" type="button" class="btn btn-default" data-dismiss="modal"
-                        data-bs-target="#myModal">Close</button>
+                    <div id="modal-footer"></div>
+                    <div>
+                        <button id="closeMyModal" type="button" class="btn btn-default" data-dismiss="modal"
+                        data-bs-target="#myModal">CloseX</button>
+                    </div>
+                    
                 </div>
             </div>
 
@@ -228,7 +232,6 @@ let claseRptaImagen = `<div>
             const temaIndex = tema - 1;
             if (temas[temaIndex] && currentQuestion < temas[temaIndex].preguntas.length) {
                 const respuestaCorrecta = temas[temaIndex].preguntas[currentQuestion].respuestaCorrecta;
-                console.log(respuestaCorrecta);
                 if (idOpc.toString() == respuestaCorrecta.toString()) {
 
                     // Respuesta Correcta
@@ -272,9 +275,12 @@ let claseRptaImagen = `<div>
                 let botonSgteTema= `
                     <button id="sgteTema" class="btn modal-sgte-tema alineacion_izquierda" onClick="sgteTema()">Siguiente Tema </button>
                 `;
-                if (tema>=temas.length-1)
+                console.log(tema);
+                console.log(" de ");
+                console.log(temas.length);
+                if (tema>=temas.length)
                 {
-                    botonSgteTema=="";
+                    botonSgteTema="";
                 }
                 
                 // Se han respondido todas las preguntas del tema
@@ -327,6 +333,9 @@ let claseRptaImagen = `<div>
             }
             $("#modal-body").html(`
                 ${message}
+            `);
+            $("#modal-footer").html(`
+                <p style="text-align: left;"> Tiene otra oportunidad </p>
             `);
 
             $("#modal-header").html(`

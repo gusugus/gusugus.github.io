@@ -17,6 +17,8 @@ var preguntas4 = [
                 "<div><a  target='_blank' href='https://web.mit.edu/16.unified/www/FALL/thermodynamics/notes/node28.html'>Enlace(Inglés) </a> </div>"+
                 "<div><a  target='_blank' href='https://www.cicloscombinados.com/index.php/articulos/articulos-avanzados/centrales-termicas-de-ciclo-combinado/el-ciclo-brayton'>Enlace(Español) </a> </div>"
             },
+
+            /*
             //p2
             {
                 pregunta: "El proceso termodinámico de enfriamiento se llama",
@@ -100,6 +102,10 @@ var preguntas4 = [
                 "<div><a  target='_blank' href='https://mechanicalboost.com/brayton-cycle/'>Enlace(Inglés) </a> </div>"+
                 "<div><a  target='_blank' href='http://tesla.us.es/wiki/index.php/Ciclo_Brayton'>Enlace(Español) </a> </div>"
             }
+
+*/
+
+
         ]
     }
 ]

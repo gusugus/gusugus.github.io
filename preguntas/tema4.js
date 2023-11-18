@@ -18,7 +18,7 @@ var preguntas4 = [
                 "<div><a  target='_blank' href='https://www.cicloscombinados.com/index.php/articulos/articulos-avanzados/centrales-termicas-de-ciclo-combinado/el-ciclo-brayton'>Enlace(Español) </a> </div>"
             },
 
-            /*
+            
             //p2
             {
                 pregunta: "El proceso termodinámico de enfriamiento se llama",
@@ -48,7 +48,7 @@ var preguntas4 = [
                 respuestaCorrecta: 1,
                 retroalimentacion_titulo: "Retroalimentación",
                 retroalimentacion_contenido: "<div>Revise el siguiente diagrama P vs.V del ciclo de Brayton: </div>"+
-                                            "<div ><img class='imagen-retro' src='imagenes/retrot432.jpg'> </div>"+
+                                            "<div ><img class='imagen-retro' src='imagenes/retrot4p2.jpg'> </div>"+
                                             "<div><a  target='_blank' href='https://mechanicalboost.com/brayton-cycle/'>Enlace(Inglés) </a> </div>"+
                                             "<div><a  target='_blank' href='http://tesla.us.es/wiki/index.php/Ciclo_Brayton'>Enlace(Español) </a> </div>"
             },
@@ -59,7 +59,7 @@ var preguntas4 = [
                 opciones: ["Mayor", 
                            "Igual", 
                            "Menor",
-                        "-"],
+                        ],
                 tipoRespuesta:"texto",
                 tipoPregunta:"texto",
                 respuestaCorrecta: 2,
@@ -75,7 +75,7 @@ var preguntas4 = [
                 opciones: ["Mayor", 
                            "Igual", 
                            "Menor",
-                        "-"],
+                        ],
                 tipoRespuesta:"texto",
                 tipoPregunta:"texto",
                 respuestaCorrecta: 1,
@@ -92,7 +92,7 @@ var preguntas4 = [
                 opciones: ["Siempre con aire", 
                            "Siempre con agua", 
                            "Dependiendo de la planta industrial puede trabajar con aire o con agua",
-                           "-"
+                           
                         ],
                 tipoRespuesta:"texto",
                 tipoPregunta:"texto",
@@ -103,7 +103,7 @@ var preguntas4 = [
                 "<div><a  target='_blank' href='http://tesla.us.es/wiki/index.php/Ciclo_Brayton'>Enlace(Español) </a> </div>"
             }
 
-*/
+
 
 
         ]

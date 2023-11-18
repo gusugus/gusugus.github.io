@@ -36,7 +36,7 @@
                     <div id="modal-footer"></div>
                     <div>
                         <button id="closeMyModal" type="button" class="btn btn-default" data-dismiss="modal"
-                        data-bs-target="#myModal">CloseX</button>
+                        data-bs-target="#myModal">Close.</button>
                     </div>
                     
                 </div>
@@ -85,16 +85,33 @@
 
 
     <div id="modals-container" class="centrar" role="dialog"></div>
-    <script src="tema1.js"></script>
-    <script src="tema2.js"></script>
-    <script src="tema3.js"></script>
-    <script src="tema4.js"></script>
+    <script src="preguntas/tema1.js"></script>
+    <script src="preguntas/tema2.js"></script>
+    <script src="preguntas/tema3.js"></script>
+    <script src="preguntas/tema4.js"></script>
 
     <script>
         var currentQuestion = 0; // Contador de preguntas
         var temaActual = 1; // Tema actual
         var intentos = 0; // Contador de intentos
         var temas = [];
+
+        $(document).ready(function() { 
+            currentQuestion=0;
+            temaActual = 0;
+            intentos = 0;
+            if(!$('#btnTema2').prop('disabled'))
+            {
+                $('#btnTema2').prop('disabled', true);
+            }  
+            if(!$('#btnTema3').prop('disabled'))
+            {
+                $('#btnTema3').prop('disabled', true);
+            }   if(!$('#btnTema4').prop('disabled'))
+            {
+                $('#btnTema4').prop('disabled', true);
+            }  
+        });
         
         function shuffle(array) {
             array.sort(() => Math.random() - 0.5);
@@ -120,30 +137,52 @@
 
             let claseRptaTexto = `
                 <div class="grid-item">
-                    <button type="button" class="boton-modal-color" name="respuesta" value="" id="opcion:x" onclick="checkAnswer(${tema}, :x)">
-                        <p> :item_rpta </p>
+                    <button type="button" class="boton-modal-color" name="respuesta" value=":x" id="opcion:x" onclick="checkAnswer(${tema}, ':item_rpta')">
+                        <p> :x </p>
                     </button>
                 </div>
                     `;
-let claseRptaImagen = `<div>
+            let claseRptaImagen = `<div>
                     <input type="button" name="respuesta" value=":x" id="opcion:x" disabled>
                     <label for="opcion:x">
                         <img src=":item_rpta"> 
                     </label>
                     </div>`;
                     let opciones = "";
-                    let rptasOpciones = temas[tema - 1].preguntas[currentQuestion].opciones;
-                    
+                    var rptasOpciones = temas[tema - 1].preguntas[currentQuestion].opciones.slice();
+                    shuffle(rptasOpciones);
+
                 for(i=0;i<rptasOpciones.length;i++ )
                 {
-                    let opc = claseRptaTexto.replaceAll(":x", i).replaceAll(":item_rpta", rptasOpciones[i]);
+                    let opc = claseRptaTexto.replaceAll(":x", (i+1)).replaceAll(":item_rpta", rptasOpciones[i]);
                     opciones += opc;
                 }
 
+                let claseMidTxt = `<div>
+                    <input type="button" name="respuesta" value=":x" id="opcion:x" disabled>
+                    
+                        :item_rpta</p>
+                    </label>
+                    </div>`;
+                var grupo_opciones = '';
+                
                 if (temas[tema - 1].preguntas[currentQuestion].tipoRespuesta == "texto")
                 {
+                    
+                    let ii=0;
+                    for(i=0;i<rptasOpciones.length;i++ )
+                    {
+                        let opc = claseMidTxt.replaceAll(":x", (i+1)).replaceAll(":item_rpta", rptasOpciones[i]);
+                        grupo_opciones += opc;
+                        ii++;
+                        //opciones = opciones.replace(rptasOpciones[i], ii);
+                    }
+
                     htmlRespuesta = `
-                    <div class="button-container">
+                    <div class="opcionesRespueesta">
+                        ${grupo_opciones}
+                    </div>
+                    <div class="button-container">                        
                         <div class="body-botones">
                             ${opciones}
                         </div>
@@ -162,7 +201,7 @@ let claseRptaImagen = `<div>
                         ii++;
                         let opcRs = "imagenes/t.{1,3}p.{1,3}oX....";
                         opcRs=opcRs.replace("X",ii);
-                        opciones = opciones.replace(new RegExp(opcRs, 'g'), ii);
+                        //opciones = opciones.replace(new RegExp(opcRs, 'g'), ii);
                     }
 
 
@@ -228,11 +267,15 @@ let claseRptaImagen = `<div>
         /**
          * Funcion que califica las respuestas
          */
-        function checkAnswer(tema, idOpc) {
+        function checkAnswer(tema, rpta) {
             const temaIndex = tema - 1;
-            if (temas[temaIndex] && currentQuestion < temas[temaIndex].preguntas.length) {
+            if (temas[temaIndex] && currentQuestion < temas[temaIndex].preguntas.length) 
+            {
                 const respuestaCorrecta = temas[temaIndex].preguntas[currentQuestion].respuestaCorrecta;
-                if (idOpc.toString() == respuestaCorrecta.toString()) {
+                let intRptaCor=parseInt(respuestaCorrecta);
+                let respCorrecta = temas[temaIndex].preguntas[currentQuestion].opciones[intRptaCor];
+                if (rpta.toString() == respCorrecta.toString()) 
+                {
 
                     // Respuesta Correcta
                     rptas[temaIndex + ";" + currentQuestion] = 1;
@@ -242,20 +285,34 @@ let claseRptaImagen = `<div>
                         createTemaModal(tema);
                         alert("Respuesta Correcta. Bien");
                     } else {
-                        enableNextTemaButton();
+                        enableNextTemaButton(tema);
                     }
-                } else {
+                } else 
+                {
                     // Respuesta Incorrecta
                     rptas[temaIndex + ";" + currentQuestion] = 0;
                     intentos++;
-                    if (intentos < 2) {
+                    if (intentos < 2) 
+                    {
                         showFeedbackModal("Intente otra vez", temas[temaIndex].preguntas[currentQuestion]);
+                        $("#modal-footer").html(`
+                        <div id="otraOportunidad">
+                            <p style="text-align: left;"> Tiene otra oportunidad </p>
+                        </div>
+                        `);
                     }
-                    else {
+                    else
+                    {
                         //alert("Incorrecto. Continúa con la siguiente.");
                         if(currentQuestion !== temas[temaIndex].preguntas.length-1)
                         {
+                            
                             showFeedbackModal("Incorrecto, continúe con la siguiente pregunta");
+                            $("#modal-footer").html(`
+                            <div id="otraOportunidad">
+                                <p style="text-align: left;"> ... </p>
+                            </div>
+                            `);
                         }
 
                         currentQuestion++;
@@ -264,7 +321,7 @@ let claseRptaImagen = `<div>
                             createTemaModal(tema);
                         }
                         else {
-                            enableNextTemaButton();
+                            enableNextTemaButton(tema);
                         }
                     }
                 }
@@ -273,11 +330,9 @@ let claseRptaImagen = `<div>
             if (currentQuestion >= temas[temaIndex].preguntas.length) {
 
                 let botonSgteTema= `
-                    <button id="sgteTema" class="btn modal-sgte-tema alineacion_izquierda" onClick="sgteTema()">Siguiente Tema </button>
+                    <button id="sgteTema" class="btn modal-sgte-tema alineacion_izquierda" onClick="sgteTema(${tema})">Siguiente Tema </button>
                 `;
-                console.log(tema);
-                console.log(" de ");
-                console.log(temas.length);
+               
                 if (tema>=temas.length)
                 {
                     botonSgteTema="";
@@ -302,7 +357,7 @@ let claseRptaImagen = `<div>
                         
                         
                         ${botonSgteTema}
-                        <button id="repetirTema" class="btn modal-sgte-tema alineacion_derecha" onClick="repetirTema()">Repetir Tema </button>
+                        <button id="repetirTema" class="btn modal-sgte-tema alineacion_derecha" onClick="repetirTema(${tema})">Repetir Tema </button>
                 
                     </div>
 
@@ -334,9 +389,7 @@ let claseRptaImagen = `<div>
             $("#modal-body").html(`
                 ${message}
             `);
-            $("#modal-footer").html(`
-                <p style="text-align: left;"> Tiene otra oportunidad </p>
-            `);
+            
 
             $("#modal-header").html(`
                 ${modal_titulo}
@@ -368,9 +421,11 @@ let claseRptaImagen = `<div>
         /*
         * Funcion que habilita el boton del siguiente tema
         */
-        function enableNextTemaButton() 
+        function enableNextTemaButton(temaIndex) 
         {
-            temaActual++;
+            temaActual=temaIndex+1;
+            intentos=0;
+            //console.log("Habilitando sgte tema: "+temaActual);
 
             if (temaActual >= 2) {
                 $('#btnTema2').prop('disabled', false);
@@ -384,6 +439,7 @@ let claseRptaImagen = `<div>
                 $('#btnTema4').prop('disabled', false);
                 $('#btnTema4').prop('title', "");
             }
+            
         }
 
         /*
@@ -442,16 +498,17 @@ let claseRptaImagen = `<div>
         });
 
 
-        function sgteTema()
+        function sgteTema(temaIndex)
         {
             currentQuestion = 0;
-            createTemaModal(temaActual);
+            createTemaModal(temaIndex+1);
         };
 
-        function repetirTema()
+        function repetirTema(temaIndex)
         {
             currentQuestion = 0;
-            createTemaModal(temaActual-1);
+            createTemaModal(temaIndex);
+            //console.log("repitindo tema "+temaIndex)
         };
 
         //Cuando se muestre el modal

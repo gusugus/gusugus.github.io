@@ -2,7 +2,7 @@ let rutaImagenes='imagenes/';
 var preguntas1 = [
     {
         preguntas: [
-/*
+
             {
                 pregunta: "¿Cuál es la función del compresor?",
                 opciones: ["Aumentar tanto la presión como la temperatura", 
@@ -24,7 +24,7 @@ var preguntas1 = [
                 opciones: ["El aire realiza trabajo sobre el compresor", 
                            "El compresor realiza trabajo sobre el aire", 
                            "No se realiza trabajo en esta etapa",
-                        "-"],
+                        "Ninguna de las anteriores"],
                 tipoRespuesta:"texto",
                 tipoPregunta:"texto",
                 respuestaCorrecta: 0,
@@ -53,7 +53,7 @@ var preguntas1 = [
                                             "<div><a target='_blank' href='https://www.thermal-engineering.org/es/que-es-el-ciclo-de-brayton-procesos-ecuaciones-definicion/'>Enlace (español) </a></div>"
             },
 
-*/
+
 //p4
             {
                 pregunta: "¿Cuál de las opciones representa de mejor manera la relación presión – volumen en la compresión?",
@@ -79,7 +79,7 @@ var preguntas1 = [
                 opciones: ["Mayor", 
                            "Menor", 
                            "Igual",
-                        "-"],
+                        ],
                 tipoRespuesta:"texto",
                 tipoPregunta:"texto",
                 respuestaCorrecta: 0,
@@ -90,14 +90,14 @@ var preguntas1 = [
             },
 
 
-            /*
+            
 //p6
             {
                 pregunta: "En la compresión: la presión de salida del aire con respecto a la presión de entrada será...",
                 opciones: ["Mayor", 
                            "Menor", 
                            "Igual",
-                        "-"],
+                        "Ninguna de las anteriores"],
                 tipoRespuesta:"texto",
                 tipoPregunta:"texto",
                 respuestaCorrecta: 0,
@@ -122,7 +122,7 @@ var preguntas1 = [
                                             "<div><a  target='_blank' href='https://areacooling.com/areacademy/es/sobrecalentamiento-y-subenfriamiento/'> Enlace(Español) </a> </div>"
             },
 
-            */
+          
             
         ]
     }

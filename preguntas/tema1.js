@@ -12,8 +12,9 @@ var preguntas1 = [
                 tipoRespuesta:"texto",
                 tipoPregunta:"texto",
                 respuestaCorrecta: 0,
-                retroalimentacion_titulo: "Retroalimentación",
+                retroalimentacion_titulo: "Respuesta Incorrecta",
                 retroalimentacion_contenido: "<div class='retroalimentacion-contenido'>El aire es comprimido y dirigido hacia la cámara de combustión mediante un compresor (movido por la turbina). Puesto que esta fase es muy rápida, se modela mediante una compresión adiabática.</div>"+
+                                            "<div>Se sugiere revise el siguiente enlace</div>"+
                                             "<div><a  target='_blank' href='https://mechanicalboost.com/brayton-cycle/'>Enlace (inglés)</a></div>"+
                                             "<div><a target='_blank' href='http://tesla.us.es/wiki/index.php/Ciclo_Brayton'>Enlace (español) </a></div>"
             },
@@ -29,13 +30,12 @@ var preguntas1 = [
                 tipoPregunta:"texto",
                 respuestaCorrecta: 0,
                 retroalimentacion_titulo: "Retroalimentación",
-                retroalimentacion_contenido: "<div class='retroalimentacion-contenido'>Revise el siguiente diagrama P vs.V del ciclo de Brayton:</div>"+
-                                            "<div ><img class='imagen-retro' src='imagenes/retrot1p2.jpg' </div>"+
+                retroalimentacion_contenido: "<div class='retroalimentacion-contenido'>Revise el siguiente enlace</div>"+
                                             "<div><a  target='_blank' href='https://mechanicalboost.com/brayton-cycle/'>Enlace (inglés)</a></div>"+
                                             "<div><a target='_blank' href='http://tesla.us.es/wiki/index.php/Ciclo_Brayton'>Enlace (español) </a></div>"
             },
 
-
+/*
 //p3
             {
                 pregunta: "El proceso termodinámico en el compresor se llama...",
@@ -123,7 +123,7 @@ var preguntas1 = [
             },
 
           
-            
+            */
         ]
     }
 ];

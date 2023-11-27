@@ -11,12 +11,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
 
 </head>
 
 <body>
+
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
@@ -95,6 +96,8 @@
         var temaActual = 1; // Tema actual
         var intentos = 0; // Contador de intentos
         var temas = [];
+        var imaaa;
+        var opcionesRespuesta;
 
         $(document).ready(function() { 
             currentQuestion=0;
@@ -179,10 +182,10 @@
                     }
 
                     htmlRespuesta = `
-                    <div class="opcionesRespueesta">
+                    <div id ="opcionesRespuesta" class="opcionesRespueesta">
                         ${grupo_opciones}
                     </div>
-                    <div class="button-container">                        
+                    <div id = "opcionesBotones" class="button-container">                        
                         <div class="body-botones">
                             ${opciones}
                         </div>
@@ -220,7 +223,9 @@
                 respuestas = ``;
                 const modal = $('<div>', {
                     class: 'modal',
-                    id: 'temaModal' //id de preguntas-Modal
+                    id: 'temaModal',
+                    style: 'padding-left: 0px;',
+                    backdrop: 'static', keyboard: false,
                 }).html(` <div class="centrar modal_margen pregunta">
             
             <a href="#close-modal" rel="modal:close" class="close" data-dismiss="modal" data-bs-target="#myModal" aria-label="Close">
@@ -230,7 +235,7 @@
             <!--<h1 class="pregunta_numero">Pregunta ${currentQuestion + 1}</h1> -->
             <div class="mitad-derecha">${currentQuestion + 1}/${temas[tema - 1].preguntas.length}</div>
             <div>
-                <p class="pregunta_item justificar padding-5 fondo_pizarra">${temas[tema - 1].preguntas[currentQuestion].pregunta}</p>
+                <p id="item_pregunta" class="pregunta_item justificar padding-5 fondo_pizarra">${temas[tema - 1].preguntas[currentQuestion].pregunta}</p>
             </div>
             
 
@@ -241,12 +246,15 @@
             
         `);
 
+        
+
     
 
                 modalContainer.empty();
                 modalContainer.append(modal);
                 modal.modal();
-                $('.body-botones').randomize('div');
+                escribirLetraPorLetra("item_pregunta",50);
+                //$('.body-botones').randomize('div');
             } else {
                 const resultadoModal = $('<div>', {
                     class: 'modal',
@@ -259,6 +267,7 @@
                 modalContainer.empty();
                 modalContainer.append(resultadoModal);
                 resultadoModal.modal();
+                $("#temaModal").addEventListener("show", function(){$("#temaModal").css("padding-left", "0");});
             }
         }
 
@@ -282,8 +291,13 @@
                     currentQuestion++;
                     if (currentQuestion < temas[temaIndex].preguntas.length) {
                         intentos = 0; // Reiniciar los intentos
-                        createTemaModal(tema);
-                        alert("Respuesta Correcta. Bien");
+                        Swal.fire({
+                            title: "Respuesta Correcta",
+                            text: "",
+                            icon: "success"
+                          });
+                        createTemaModal(tema);                       
+                        
                     } else {
                         enableNextTemaButton(tema);
                     }
@@ -380,11 +394,18 @@
                 `;
             }
             if (item != null && typeof (item.retroalimentacion_titulo) !== "undefined") {
+                /*
                 modal_titulo = `
                     <h4>
                         ${item.retroalimentacion_titulo}
                     </h4>
+                    */
+                modal_titulo = `
+                    <h4>
+                        Respuesta Incorrecta
+                    </h4>
                 `;
+                
             }
             $("#modal-body").html(`
                 ${message}
@@ -395,7 +416,12 @@
                 ${modal_titulo}
             `);
 
-            $("#myModal").modal("show");
+            
+            Swal.fire({
+                title: "Respuesta Incorrecta",
+                text: "",
+                icon: "error"
+              }).then((result) => {$("#myModal").modal("show");});
         }
 
         // Evento para cerrar el modal de retroalimentación
@@ -411,8 +437,8 @@
             //rptas[temaIndex+";"+currentQuestion]
             for (let i = 0; i < temaPreguntas.length; i++) {
                 let str = rptas[temaIndex + ";" + i];
-                results += `<div class="results-tema">Pregunta ${i + 1}: ${str == '1' ? '<span><img src="imagenes/check.svg"></span>' :
-                    '<span><img src="imagenes/x.svg"></span>'}</div>`;
+                results += `<div class="results-tema">Pregunta ${i + 1}: ${str == '1' ? '<span style="color:green;">&#10004;</span>' :
+                    '<span style="color:red;">&#10006;</span>'}</div>`;
             }
 
             return results;
@@ -528,7 +554,54 @@
             $('.modal-backdrop').remove();
         });
         
+        // Función para escribir letra por letra
+        function escribirLetraPorLetra(nombreElemento, velocidad) {
+        let i = 0;
+        var elemento = document.getElementById(nombreElemento);
+        var texto = elemento.textContent;
+        document.getElementById("opcionesRespuesta").style.opacity = 0;
+        document.getElementById("opcionesBotones").style.opacity = 0;
         
+        elemento.textContent = '';
+        opcionesRespuesta = $("#opcionesRespuesta");
+        const interval = setInterval(function()
+        {
+            elemento.textContent += texto.charAt(i);1
+            i++;
+            if (i > texto.length - 1) 
+            {
+                clearInterval(interval);
+                //Opacidad en 1 seg de opcionees de respuesta
+                let opacity = 0;
+                const fadeInInterval = setInterval(function() {
+                    if (opacity < 1) {
+                    opacity += 0.1;
+                    document.getElementById("opcionesRespuesta").style.opacity = opacity;
+                    } else {
+                    clearInterval(fadeInInterval);
+                        //Opacidad de Botones
+                        let opacity2 = 0;
+                        const fadeInInterval2 = setInterval(function() {
+                        if (opacity2 < 1) {
+                        opacity2 += 0.1;
+                        document.getElementById("opcionesBotones").style.opacity = opacity2;
+                        } else {
+                        clearInterval(fadeInInterval2);
+                        }
+                    }, velocidad); // Velocidad para la animación fadeIn
+                    }
+                }, velocidad); // Velocidad para la animación fadeIn
+
+
+            }
+            else
+            {
+                
+            }
+        }, velocidad);
+        }
+
+        // Llama a la función con el texto, el elemento y la velocidad deseada (en milisegundos)
 
     </script>
 </body>

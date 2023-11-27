@@ -321,7 +321,12 @@
                         if(currentQuestion !== temas[temaIndex].preguntas.length-1)
                         {
                             
-                            showFeedbackModal("Incorrecto, continúe con la siguiente pregunta");
+                            //showFeedbackModal("Incorrecto, continúe con la siguiente pregunta");
+                            Swal.fire({
+                                title: "Respuesta Incorrecta",
+                                text: "Incorrecto, continúe con la siguiente pregunta",
+                                icon: "error"
+                              });
                             $("#modal-footer").html(`
                             <div id="otraOportunidad">
                                 <p style="text-align: left;"> ... </p>
@@ -498,6 +503,7 @@
             $('#btnTema1').on('click', function () {
                 currentQuestion = 0; // Reiniciar el contador de preguntas
                 temaActual = 1; // Reiniciar el tema actual
+                intentos = 0;
                 createTemaModal(1);
             });
 
@@ -507,6 +513,7 @@
         $('#btnTema2').on('click', function () {
             currentQuestion = 0;
             temaActual = 2;
+            intentos = 0;
             createTemaModal(2);
         });
 
@@ -520,6 +527,7 @@
         $('#btnTema4').on('click', function () {
             currentQuestion = 0;
             temaActual = 4;
+            intentos = 0;
             createTemaModal(4);
         });
 

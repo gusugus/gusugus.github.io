@@ -24,8 +24,7 @@ var preguntas1 = [
                 pregunta: "En la etapa del compresor …",
                 opciones: ["El aire realiza trabajo sobre el compresor", 
                            "El compresor realiza trabajo sobre el aire", 
-                           "No se realiza trabajo en esta etapa",
-                        "Ninguna de las anteriores"],
+                           "No se realiza trabajo en esta etapa"],
                 tipoRespuesta:"texto",
                 tipoPregunta:"texto",
                 respuestaCorrecta: 0,
@@ -35,7 +34,7 @@ var preguntas1 = [
                                             "<div><a target='_blank' href='http://tesla.us.es/wiki/index.php/Ciclo_Brayton'>Enlace (español) </a></div>"
             },
 
-/*
+
 //p3
             {
                 pregunta: "El proceso termodinámico en el compresor se llama...",
@@ -48,7 +47,7 @@ var preguntas1 = [
                 respuestaCorrecta: 0,
                 retroalimentacion_titulo: "Retroalimentación",
                 retroalimentacion_contenido: "<div class='retroalimentacion-contenido'>El gas de trabajo se comprime adiabáticamente desde el estado A al estado B mediante el compresor (generalmente un compresor de flujo axial)</div>"+
-                                            "<div ><img class='imagen-retro' src='imagenes/retrot1p3.jpg' </div>"+
+                                            
                                             "<div><a  target='_blank' href='https://mechanicalboost.com/brayton-cycle/'>Enlace (inglés)</a></div>"+
                                             "<div><a target='_blank' href='https://www.thermal-engineering.org/es/que-es-el-ciclo-de-brayton-procesos-ecuaciones-definicion/'>Enlace (español) </a></div>"
             },
@@ -65,8 +64,7 @@ var preguntas1 = [
                 tipoPregunta:"texto",
                 respuestaCorrecta: 0,
                 retroalimentacion_titulo: "Retroalimentación",
-                retroalimentacion_contenido: "<div>Revise el siguiente diagrama P vs.V del ciclo de Brayton:</div>"+
-                                            "<div ><img class='imagen-retro' src='imagenes/retrot1p4.jpg' </div>"+
+                retroalimentacion_contenido: "<div class='retroalimentacion-contenido'>Revise el siguiente enlace</div>"+
                                             "<div><a  target='_blank' href='https://mechanicalboost.com/brayton-cycle/'>Enlace(Inglés) </a> </div>"+
                                             "<div><a  target='_blank' href='http://tesla.us.es/wiki/index.php/Ciclo_Brayton'>Enlace(Español) </a> </div>"
                 
@@ -96,8 +94,7 @@ var preguntas1 = [
                 pregunta: "En la compresión: la presión de salida del aire con respecto a la presión de entrada será...",
                 opciones: ["Mayor", 
                            "Menor", 
-                           "Igual",
-                        "Ninguna de las anteriores"],
+                           "Igual"],
                 tipoRespuesta:"texto",
                 tipoPregunta:"texto",
                 respuestaCorrecta: 0,
@@ -118,12 +115,13 @@ var preguntas1 = [
                 respuestaCorrecta: 0,
                 retroalimentacion_titulo: "Retroalimentación",
                 retroalimentacion_contenido: 
+                                            "<div class='retroalimentacion-contenido'>Revise el siguiente enlace</div>"+
                                             "<div><a  target='_blank' href='https://www.buildingengines.com/blog/knowledge-superheat-and-subcooling/'> Enlace(Inglés) </a> </div>"+
                                             "<div><a  target='_blank' href='https://areacooling.com/areacademy/es/sobrecalentamiento-y-subenfriamiento/'> Enlace(Español) </a> </div>"
             },
 
           
-            */
+            
         ]
     }
 ];

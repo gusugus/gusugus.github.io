@@ -14,6 +14,7 @@ var preguntas2 = [
                 respuestaCorrecta: 3,
                 retroalimentacion_titulo: "Retroalimentación",
                 retroalimentacion_contenido: 
+                "<div class='retroalimentacion-contenido'>Revise el siguiente enlace</div>"+
                 "<div><a  target='_blank' href='https://web.mit.edu/16.unified/www/FALL/thermodynamics/notes/node28.html'> Enlace(Inglés) </a> </div>"+
                 "<div><a  target='_blank' href='https://www.cicloscombinados.com/index.php/articulos/articulos-avanzados/centrales-termicas-de-ciclo-combinado/el-ciclo-brayton '> Enlace(Español) </a> </div>"
 
@@ -47,8 +48,7 @@ var preguntas2 = [
                 tipoPregunta:"texto",
                 respuestaCorrecta: 1,
                 retroalimentacion_titulo: "Retroalimentación",
-                retroalimentacion_contenido: "<div>Revise el siguiente diagrama P vs.V del ciclo de Brayton:</div>"+
-                                            "<div ><img class='imagen-retro' src='imagenes/retrot2p3.jpg'> </div>"+
+                retroalimentacion_contenido: "<div class='retroalimentacion-contenido'>Revise el siguiente enlace</div>"+
                                             "<div><a  target='_blank' href='https://mechanicalboost.com/brayton-cycle/'>Enlace(Inglés) </a> </div>"+
                                             "<div><a  target='_blank' href='http://tesla.us.es/wiki/index.php/Ciclo_Brayton'>Enlace(Español) </a> </div>"
             },
@@ -64,8 +64,7 @@ var preguntas2 = [
                 tipoPregunta:"texto",
                 respuestaCorrecta: 2,
                 retroalimentacion_titulo: "Retroalimentación",
-                retroalimentacion_contenido: "<div>Revise el siguiente diagrama P vs.V del ciclo de Brayton:</div>"+
-                                            "<div ><img class='imagen-retro' src='imagenes/retrot2p4.jpg'> </div>"+
+                retroalimentacion_contenido: "<div class='retroalimentacion-contenido'>Revise el siguiente enlace</div>"+
                                             "<div><a  target='_blank' href='https://mechanicalboost.com/brayton-cycle/'>Enlace(Inglés) </a> </div>"+
                                             "<div><a  target='_blank' href='http://tesla.us.es/wiki/index.php/Ciclo_Brayton'>Enlace(Español) </a> </div>"
             },
@@ -82,7 +81,7 @@ var preguntas2 = [
                 respuestaCorrecta: 0,
                 retroalimentacion_titulo: "Retroalimentación",
                 retroalimentacion_contenido: "<div>En esta fase hay una transferencia de calor a presión constante al gas desde una fuente externa, ya que la cámara está abierta para fluir hacia adentro y hacia afuera. En un ciclo Brayton ideal abierto, el aire comprimido pasa a través de una cámara de combustión, donde se quema el combustible y se calienta el aire u otro medio</div>"+
-                                            "<div ><img class='imagen-retro' src='imagenes/retrot2p4.jpg'> </div>"+
+                                            "<div class='retroalimentacion-contenido'>Revise el siguiente enlace</div>"+
                                             "<div><a  target='_blank' href='https://mechanicalboost.com/brayton-cycle/'>Enlace(Inglés) </a> </div>"+
                                             "<div><a  target='_blank' href='https://www.thermal-engineering.org/es/que-es-el-ciclo-de-brayton-procesos-ecuaciones-definicion/'>Enlace(Español) </a> </div>"
             },
@@ -99,7 +98,7 @@ var preguntas2 = [
                 respuestaCorrecta: 1,
                 retroalimentacion_titulo: "Retroalimentación",
                 retroalimentacion_contenido: "<div>En esta fase la cámara está abierta para fluir hacia adentro y hacia afuera.</div>"+
-                                            "<div ><img class='imagen-retro' src='imagenes/retrot2p6.jpg'> </div>"+
+                                            "<div class='retroalimentacion-contenido'>Revise el siguiente enlace</div>"+
                                             "<div><a  target='_blank' href='https://mechanicalboost.com/brayton-cycle/'>Enlace(Inglés) </a> </div>"+
                                             "<div><a  target='_blank' href='https://www.thermal-engineering.org/es/que-es-el-ciclo-de-brayton-procesos-ecuaciones-definicion/'>Enlace(Español) </a> </div>"
             }

@@ -209,10 +209,10 @@
 
 
                     htmlRespuesta = `
-                    <div class="centrar contenedor-imagen">
+                    <div  id ="opcionesRespuesta" class="centrar contenedor-imagen opcionesRespueesta">
                         ${grupo_imagenes}
                     </div>
-                    <div class="button-container">
+                    <div id = "opcionesBotones" class="button-container">
                         <div class="body-botones">
                             ${opciones}
                         </div>
@@ -267,8 +267,9 @@
                 modalContainer.empty();
                 modalContainer.append(resultadoModal);
                 resultadoModal.modal();
-                $("#temaModal").addEventListener("show", function(){$("#temaModal").css("padding-left", "0");});
+                
             }
+            
         }
 
         var rptas = {};
@@ -311,7 +312,7 @@
                         showFeedbackModal("Intente otra vez", temas[temaIndex].preguntas[currentQuestion]);
                         $("#modal-footer").html(`
                         <div id="otraOportunidad">
-                            <p style="text-align: left;"> Tiene otra oportunidad </p>
+                            <p style="text-align: left;">  </p>
                         </div>
                         `);
                     }
@@ -407,7 +408,7 @@
                     */
                 modal_titulo = `
                     <h4>
-                        Respuesta Incorrecta
+                        Tiene otra oportunidad
                     </h4>
                 `;
                 
@@ -549,7 +550,14 @@
         $("#myModal").on('show.bs.modal', function () {
             $("#myModal").css("z-index", "9999");
             $("#myModal").css("position", "absolute");
+            
         });
+
+        $("#modals-container").on('shown.bs.modal', function () {
+            $("#temaModal").css("padding-left", "0");
+            console.log("mostrando modal principal");
+        });
+        
 
         //Cuando se destruya el modal
         $("#myModal").on('hide.bs.modal', function () {

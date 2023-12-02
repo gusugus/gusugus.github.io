@@ -39,38 +39,12 @@
     animation: fadeIn 2s;
 }
 
-.aparecer
-{
-    animation: fadeIn 6s;
-}
-
-
 .close-modal
 {
     position:absolute;
     top: 40px;
     right:145px;
     display: none;
-}
-
-.modal_feedback
-{
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    background: #3498db;
-    
-}
-
-
-.contenedor_feedback
-{
-  height: 200px;
-  position: relative;
-  border: 3px solid green;
 }
 
 .pregunta_item
@@ -87,63 +61,6 @@
     margin-left: 3%;
     margin-right: 3%;
 }
-
-.pregunta_numero
-{
-    text-decoration: underline;
-    font-size: 2em;
-    padding-top:3%;
-
-}
-
-
-
-
-
-
-
-
-
-.tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-  }
-  
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -60px;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  
-  .tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-  }
-  
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-  }
-
-
 
   .boton-modal-color {
     display: inline-block;
@@ -220,12 +137,6 @@
     order: 1;
 }
 
-.alineacion_izquierda
-{
-    order: 2;
-}
-
-
 .button-container .grid-item:nth-child(1) button {
     border: 2px solid yellow;
 }
@@ -261,7 +172,7 @@
 }
 
 
-
+/*Numero de pregunta 1/x */
 .mitad-derecha {
     position: fixed;
     top: 50%;
@@ -272,30 +183,22 @@
     border-radius: 50%;
     font-size: 2em;
     color: white;
-    /* Otros estilos que desees aplicar */
 }
 
-.imagen-retro
-{
-    width: 100%;
-}
-
-
+/*Boton de cerrar*/
 .modal-cerrar
 {
 background-color: red;
 position: absolute;
 top: 0%;
 right: 3%;
-
-
 }
-
+/*Boton de siguiente tema*/
 .modal-sgte-tema
 {
     background-color: #3498db;
 }
-
+/*Boton de repetir tema*/
 .modal-repetir-tema
 {
     background-color: #3498db;
@@ -309,8 +212,4 @@ right: 3%;
 #temaModal
 {
     padding-left: 0%;
-}
-
-.invisible{
-    visibility: hidden;
 }

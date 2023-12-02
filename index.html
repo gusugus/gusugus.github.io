@@ -49,7 +49,7 @@
     <div class="cuerpo">
         <div class="contendor">
 
-            <h1 class="centrar pregunta_inicio"">PREGUNTAS PARA GUIA DE APRENDIZAJE</h1>
+            <h1 class="centrar titulo_inicio"">PREGUNTAS PARA GUIA DE APRENDIZAJE</h1>
             </div>
             <div class=" contenedor">
                 <div class="centrar">
@@ -178,7 +178,6 @@
                         let opc = claseMidTxt.replaceAll(":x", (i+1)).replaceAll(":item_rpta", rptasOpciones[i]);
                         grupo_opciones += opc;
                         ii++;
-                        //opciones = opciones.replace(rptasOpciones[i], ii);
                     }
 
                     htmlRespuesta = `
@@ -231,8 +230,7 @@
             <a href="#close-modal" rel="modal:close" class="close" data-dismiss="modal" data-bs-target="#myModal" aria-label="Close">
                 <span aria-hidden="true" style="color:black; font-size:1.8em">&times;</span>
             </a>
-            <!--<h2>Tema ${tema}</h2>-->
-            <!--<h1 class="pregunta_numero">Pregunta ${currentQuestion + 1}</h1> -->
+
             <div class="mitad-derecha">${currentQuestion + 1}/${temas[tema - 1].preguntas.length}</div>
             <div>
                 <p id="item_pregunta" class="pregunta_item justificar padding-5 fondo_pizarra">${temas[tema - 1].preguntas[currentQuestion].pregunta}</p>
@@ -657,9 +655,9 @@
                         } else {
                         clearInterval(fadeInInterval2);
                         }
-                    }, velocidad); // Velocidad para la animación fadeIn
+                    }, velocidad); // Velocidad para la animación
                     }
-                }, velocidad); // Velocidad para la animación fadeIn
+                }, velocidad); // Velocidad para la animación
             }
             else
             {
@@ -667,8 +665,6 @@
             }
         }, velocidad);
         }
-
-        // Llama a la función con el texto, el elemento y la velocidad deseada (en milisegundos)
 
     </script>
 </body>

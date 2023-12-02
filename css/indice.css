@@ -84,7 +84,7 @@ a.disabled {
     cursor: default;
   } 
 
-  .pregunta_inicio
+  .titulo_inicio
 {
     font-size: 35px;
     text-emphasis: 200p;
@@ -98,7 +98,7 @@ a.disabled {
 
 .estilo_titulo_ciclo
 {
-    color: #153FE8;
+    color: #b8c2e9;
     font-size: xx-large;
 }   
 
@@ -111,23 +111,6 @@ a.disabled {
 {
     padding-left: 5%;
     padding-right: 3%;
-}
-
-.margen-boton
-{
-    margin-left:3%;
-}
-
-.resultados
-{
-    padding-top:1%;
-    margin-top: 1%;
-}
-
-.titulo-res
-{
-    padding-top:1%;
-    margin-top: 1%;
 }
 
 .fondo_pizarra

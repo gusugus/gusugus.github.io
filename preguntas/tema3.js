@@ -30,7 +30,7 @@ var preguntas3 = [
                 tipoPregunta:"texto",
                 respuestaCorrecta: 0,
                 retroalimentacion_titulo: "Retroalimentación",
-                retroalimentacion_contenido: "<div>El gas comprimido y calentado se expande adiabáticamente desde el estado C al estado D en una turbina. El gas funciona en los alrededores (álabes de la turbina) y pierde una cantidad de energía interna igual al trabajo que abandona el sistema</div>"+
+                retroalimentacion_contenido: "<div>El gas funciona en los alrededores (álabes de la turbina) y pierde una cantidad de energía interna igual al trabajo que abandona el sistema</div>"+
                                             "<div class='retroalimentacion-contenido'>Revise el siguiente enlace</div>"+
                                             "<div><a  target='_blank' href='https://mechanicalboost.com/brayton-cycle/'>Enlace(Inglés) </a> </div>"+
                                             "<div><a  target='_blank' href='https://www.thermal-engineering.org/es/que-es-el-ciclo-de-brayton-procesos-ecuaciones-definicion/'>Enlace(Español) </a> </div>"
@@ -97,7 +97,7 @@ var preguntas3 = [
                 tipoPregunta:"texto",
                 respuestaCorrecta: 2,
                 retroalimentacion_titulo: "Retroalimentación",
-                retroalimentacion_contenido: "<div>Revise el siguiente diagrama P vs.V del ciclo de Brayton:</div>"+
+                retroalimentacion_contenido: 
                                             "<div class='retroalimentacion-contenido'>Revise el siguiente enlace</div>"+
                                             "<div><a  target='_blank' href='https://mechanicalboost.com/brayton-cycle/'>Enlace(Inglés) </a> </div>"+
                                             "<div><a  target='_blank' href='http://tesla.us.es/wiki/index.php/Ciclo_Brayton'>Enlace(Español) </a> </div>"

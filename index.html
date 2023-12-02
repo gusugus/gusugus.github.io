@@ -278,6 +278,7 @@
          * Funcion que califica las respuestas
          */
         function checkAnswer(tema, rpta) {
+
             const temaIndex = tema - 1;
             if (temas[temaIndex] && currentQuestion < temas[temaIndex].preguntas.length) 
             {
@@ -296,8 +297,8 @@
                             title: "Respuesta Correcta",
                             text: "",
                             icon: "success"
-                          });
-                        createTemaModal(tema);                       
+                          }).then((result) => {createTemaModal(tema);});
+                                               
                         
                     } else {
                         enableNextTemaButton(tema);
@@ -327,27 +328,71 @@
                                 title: "Respuesta Incorrecta",
                                 text: "Incorrecto, continúe con la siguiente pregunta",
                                 icon: "error"
-                              });
+                              }).then((result) => {
+                                currentQuestion++;
+                                intentos = 0;
+                                if (currentQuestion < temas[temaIndex].preguntas.length) {
+                                    createTemaModal(tema);
+                                }
+                                else {
+                                    enableNextTemaButton(tema);
+                                }
+                            });
                             $("#modal-footer").html(`
                             <div id="otraOportunidad">
                                 <p style="text-align: left;"> ... </p>
                             </div>
                             `);
                         }
+                        if(currentQuestion == temas[temaIndex].preguntas.length-1)
+                        {
+                            currentQuestion++;
+                            Swal.fire({
+                                title: "Respuesta Incorrecta",
+                                text: "Incorrecto", //Se mostrara el score
+                                icon: "error"
+                              }).then((result) =>
 
-                        currentQuestion++;
-                        intentos = 0;
-                        if (currentQuestion < temas[temaIndex].preguntas.length) {
-                            createTemaModal(tema);
+                              {
+                                EscribirScore(tema, temaIndex);
+                              });
                         }
-                        else {
-                            enableNextTemaButton(tema);
-                        }
+
+                        
                     }
                 }
             }
+            else
+            {
+                
+                if (temas[temaIndex] && currentQuestion == temas[temaIndex].preguntas.length) 
+                {
+                    const respuestaCorrecta = temas[temaIndex].preguntas[currentQuestion-1].respuestaCorrecta;
+                let intRptaCor=parseInt(respuestaCorrecta);
+                let respCorrecta = temas[temaIndex].preguntas[currentQuestion-1].opciones[intRptaCor];
+                if (rpta.toString() == respCorrecta.toString()) 
+                {
+                    // Respuesta Correcta
+                    rptas[temaIndex + ";" + currentQuestion-1] = 1;
+                    Swal.fire({
+                                title: "Respuesta Correcta",
+                                text: "Correcto.", //Se mostrara el score
+                                icon: "success"
+                              }).then((result) =>
 
-            if (currentQuestion >= temas[temaIndex].preguntas.length) {
+                              {
+                                EscribirScore(tema, temaIndex);
+                              });
+                }
+
+                }
+            }
+        }
+
+        function EscribirScore(tema, temaIndex)
+        {
+            if(currentQuestion >= temas[temaIndex].preguntas.length) 
+            {
 
                 let botonSgteTema= `
                     <button id="sgteTema" class="btn modal-sgte-tema alineacion_izquierda" onClick="sgteTema(${tema})">Siguiente Tema </button>
@@ -363,10 +408,10 @@
                     class: 'modal',
                     id: 'resultadoModal'
                 }).html(`<div class="centrar modal_margen ">
-            <a href="#close-modal" rel="modal:close" class="close" data-dismiss="modal" aria-label="Close" data-bs-target="#myModal">
-                <span aria-hidden="true" style="color:black;">&times;</span>
-            </a>
-                <div class="resultados">
+                    <a href="#close-modal" rel="modal:close" class="close" data-dismiss="modal" aria-label="Close" data-bs-target="#myModal">
+                    <span aria-hidden="true" style="color:black;">&times;</span>
+                    </a>
+                    <div class="resultados">
                     <h2 class="titulo-res">Score</h2>
                     ${getResults(tema)}
                     <button href="#close-modal" rel="modal:close" class="btn modal-cerrar" data-dismiss="modal" aria-label="Close" data-bs-target="#myModal">
@@ -382,9 +427,9 @@
                     </div>
 
                     <div class="alineacion_izquier">
-                </div>
-            </div>
-        `);
+                      </div>
+                    </div>
+                `);
                 modalContainer.empty();
                 modalContainer.append(resultadoModal);
                 resultadoModal.modal();
@@ -427,7 +472,12 @@
                 title: "Respuesta Incorrecta",
                 text: "",
                 icon: "error"
-              }).then((result) => {$("#myModal").modal("show");});
+              }).then((result) => {
+                
+                    $("#myModal").modal("show");
+                
+                
+            });
         }
 
         // Evento para cerrar el modal de retroalimentación
@@ -457,7 +507,6 @@
         {
             temaActual=temaIndex+1;
             intentos=0;
-            //console.log("Habilitando sgte tema: "+temaActual);
 
             if (temaActual >= 2) {
                 $('#btnTema2').prop('disabled', false);
@@ -543,7 +592,6 @@
         {
             currentQuestion = 0;
             createTemaModal(temaIndex);
-            //console.log("repitindo tema "+temaIndex)
         };
 
         //Cuando se muestre el modal
@@ -555,7 +603,6 @@
 
         $("#modals-container").on('shown.bs.modal', function () {
             $("#temaModal").css("padding-left", "0");
-            console.log("mostrando modal principal");
         });
         
 
@@ -575,8 +622,11 @@
         let i = 0;
         var elemento = document.getElementById(nombreElemento);
         var texto = elemento.textContent;
-        document.getElementById("opcionesRespuesta").style.opacity = 0;
-        document.getElementById("opcionesBotones").style.opacity = 0;
+        if(typeof (document.getElementById("opcionesRespuesta")) !== "undefined" )
+        {
+            document.getElementById("opcionesRespuesta").style.opacity = 0;
+            document.getElementById("opcionesBotones").style.opacity = 0;
+        }        
         
         elemento.textContent = '';
         opcionesRespuesta = $("#opcionesRespuesta");
@@ -592,23 +642,24 @@
                 const fadeInInterval = setInterval(function() {
                     if (opacity < 1) {
                     opacity += 0.1;
-                    document.getElementById("opcionesRespuesta").style.opacity = opacity;
+                        if(typeof(document.getElementById("opcionesRespuesta"))!=="undefined")
+                            document.getElementById("opcionesRespuesta").style.opacity = opacity;
                     } else {
                     clearInterval(fadeInInterval);
                         //Opacidad de Botones
                         let opacity2 = 0;
                         const fadeInInterval2 = setInterval(function() {
-                        if (opacity2 < 1) {
-                        opacity2 += 0.1;
-                        document.getElementById("opcionesBotones").style.opacity = opacity2;
+                        if (opacity2 < 1) 
+                        {
+                            opacity2 += 0.1;
+                            if(typeof(document.getElementById("opcionesBotones"))!=="undefined")
+                                document.getElementById("opcionesBotones").style.opacity = opacity2;
                         } else {
                         clearInterval(fadeInInterval2);
                         }
                     }, velocidad); // Velocidad para la animación fadeIn
                     }
                 }, velocidad); // Velocidad para la animación fadeIn
-
-
             }
             else
             {

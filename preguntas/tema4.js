@@ -31,7 +31,7 @@ var preguntas4 = [
                 tipoPregunta:"texto",
                 respuestaCorrecta: 1,
                 retroalimentacion_titulo: "Retroalimentación",
-                retroalimentacion_contenido: "<div>En esta fase, el ciclo se completa mediante un proceso de presión constante en el que se rechaza el calor del gas. La temperatura del gas de trabajo cae del punto D al punto A. </div>"+
+                retroalimentacion_contenido: "<div>En esta fase, el ciclo se completa mediante un proceso de presión constante en el que se rechaza el calor del gas.</div>"+
                                             "<div class='retroalimentacion-contenido'>Revise el siguiente enlace</div>"+
                                             "<div><a  target='_blank' href='https://mechanicalboost.com/brayton-cycle/'>Enlace(Inglés) </a> </div>"+
                                             "<div><a  target='_blank' href='https://www.thermal-engineering.org/es/que-es-el-ciclo-de-brayton-procesos-ecuaciones-definicion/'>Enlace(Español) </a> </div>"
@@ -66,7 +66,7 @@ var preguntas4 = [
                 retroalimentacion_titulo: "Retroalimentación",
                 retroalimentacion_contenido:
                 "<div class='retroalimentacion-contenido'>Revise el siguiente enlace</div>"+
-                "<div><a  target='_blank' href='https://web.mit.edu/16.unified/www/FALL/thermodynamics/notes/node28.html'>Enlace(Inglés) </a> </div>"+
+                "<div><a  target='_blank' href='https://mechanicalboost.com/brayton-cycle/'>Enlace(Inglés) </a> </div>"+
                 "<div><a  target='_blank' href='http://tesla.us.es/wiki/index.php/Ciclo_Brayton'>Enlace(Español) </a> </div>"
             },
 

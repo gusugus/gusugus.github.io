@@ -278,6 +278,7 @@
          * Funcion que califica las respuestas
          */
         function checkAnswer(tema, rpta) {
+
             const temaIndex = tema - 1;
             if (temas[temaIndex] && currentQuestion < temas[temaIndex].preguntas.length) 
             {
@@ -296,8 +297,8 @@
                             title: "Respuesta Correcta",
                             text: "",
                             icon: "success"
-                          });
-                        createTemaModal(tema);                       
+                          }).then((result) => {createTemaModal(tema);});
+                                               
                         
                     } else {
                         enableNextTemaButton(tema);
@@ -318,36 +319,76 @@
                     }
                     else
                     {
-                        //alert("Incorrecto. Continúa con la siguiente.");
                         if(currentQuestion !== temas[temaIndex].preguntas.length-1)
                         {
-                            
-                            //showFeedbackModal("Incorrecto, continúe con la siguiente pregunta");
                             Swal.fire({
                                 title: "Respuesta Incorrecta",
                                 text: "Incorrecto, continúe con la siguiente pregunta",
                                 icon: "error"
-                              });
+                              }).then((result) => { 
+                                if (intentos < 2) 
+                                {
+                                    $("#myModal").modal("show");
+                                }
+                                
+                              
+                                currentQuestion++;
+                                intentos = 0;
+                                if (currentQuestion < temas[temaIndex].preguntas.length) {
+                                    createTemaModal(tema);
+                                }
+                                else {
+                                    enableNextTemaButton(tema);
+                                }
+                             });
+
                             $("#modal-footer").html(`
                             <div id="otraOportunidad">
                                 <p style="text-align: left;"> ... </p>
                             </div>
                             `);
                         }
+                        else
+                        {
+                            //La ultima pregunta 2do intento incorrecto
+                            
+                                intentos = 0;
 
-                        currentQuestion++;
-                        intentos = 0;
-                        if (currentQuestion < temas[temaIndex].preguntas.length) {
-                            createTemaModal(tema);
+
+                                Swal.fire({
+                                title: "Respuesta Incorrecta",
+                                text: "Incorrecto. Se mostrara el score",
+                                icon: "error"
+                              }).then((result) => { 
+                              
+                                
+                                EscribirScore(tema, temaIndex);
+                                if (currentQuestion > temas[temaIndex].preguntas.length) {
+                                    enableNextTemaButton(tema);
+                                }
+                                
+                                
+                             });
+                             
+                                
                         }
-                        else {
-                            enableNextTemaButton(tema);
-                        }
+
+                        
                     }
                 }
             }
+            else if(currentQuestion == temas[temaIndex].preguntas.length)
+            {
 
-            if (currentQuestion >= temas[temaIndex].preguntas.length) {
+            }
+
+            
+        }
+
+        function EscribirScore(tema, temaIndex)
+        {
+            
+            {
 
                 let botonSgteTema= `
                     <button id="sgteTema" class="btn modal-sgte-tema alineacion_izquierda" onClick="sgteTema(${tema})">Siguiente Tema </button>
@@ -363,10 +404,10 @@
                     class: 'modal',
                     id: 'resultadoModal'
                 }).html(`<div class="centrar modal_margen ">
-            <a href="#close-modal" rel="modal:close" class="close" data-dismiss="modal" aria-label="Close" data-bs-target="#myModal">
-                <span aria-hidden="true" style="color:black;">&times;</span>
-            </a>
-                <div class="resultados">
+                    <a href="#close-modal" rel="modal:close" class="close" data-dismiss="modal" aria-label="Close" data-bs-target="#myModal">
+                    <span aria-hidden="true" style="color:black;">&times;</span>
+                    </a>
+                    <div class="resultados">
                     <h2 class="titulo-res">Score</h2>
                     ${getResults(tema)}
                     <button href="#close-modal" rel="modal:close" class="btn modal-cerrar" data-dismiss="modal" aria-label="Close" data-bs-target="#myModal">
@@ -382,13 +423,14 @@
                     </div>
 
                     <div class="alineacion_izquier">
-                </div>
-            </div>
-        `);
+                      </div>
+                    </div>
+                `);
                 modalContainer.empty();
                 modalContainer.append(resultadoModal);
                 resultadoModal.modal();
             }
+            enableNextTemaButton(tema);
         }
 
         function showFeedbackModal(message, item = null) {
@@ -427,7 +469,12 @@
                 title: "Respuesta Incorrecta",
                 text: "",
                 icon: "error"
-              }).then((result) => {$("#myModal").modal("show");});
+              }).then((result) => {
+                
+                    $("#myModal").modal("show");
+                
+                
+            });
         }
 
         // Evento para cerrar el modal de retroalimentación
@@ -457,7 +504,6 @@
         {
             temaActual=temaIndex+1;
             intentos=0;
-            //console.log("Habilitando sgte tema: "+temaActual);
 
             if (temaActual >= 2) {
                 $('#btnTema2').prop('disabled', false);
@@ -543,7 +589,7 @@
         {
             currentQuestion = 0;
             createTemaModal(temaIndex);
-            //console.log("repitindo tema "+temaIndex)
+            
         };
 
         //Cuando se muestre el modal
@@ -555,7 +601,7 @@
 
         $("#modals-container").on('shown.bs.modal', function () {
             $("#temaModal").css("padding-left", "0");
-            console.log("mostrando modal principal");
+            
         });
         
 
@@ -575,8 +621,12 @@
         let i = 0;
         var elemento = document.getElementById(nombreElemento);
         var texto = elemento.textContent;
-        document.getElementById("opcionesRespuesta").style.opacity = 0;
-        document.getElementById("opcionesBotones").style.opacity = 0;
+        if(typeof (document.getElementById("opcionesRespuesta")) !== "undefined" )
+        {
+            document.getElementById("opcionesRespuesta").style.opacity = 0;
+            document.getElementById("opcionesBotones").style.opacity = 0;
+        }
+        
         
         elemento.textContent = '';
         opcionesRespuesta = $("#opcionesRespuesta");
@@ -592,7 +642,8 @@
                 const fadeInInterval = setInterval(function() {
                     if (opacity < 1) {
                     opacity += 0.1;
-                    document.getElementById("opcionesRespuesta").style.opacity = opacity;
+                    
+                        document.getElementById("opcionesRespuesta").style.opacity = opacity;
                     } else {
                     clearInterval(fadeInInterval);
                         //Opacidad de Botones
@@ -600,7 +651,10 @@
                         const fadeInInterval2 = setInterval(function() {
                         if (opacity2 < 1) {
                         opacity2 += 0.1;
-                        document.getElementById("opcionesBotones").style.opacity = opacity2;
+                        
+                            document.getElementById("opcionesBotones").style.opacity = opacity2;
+                        
+                            
                         } else {
                         clearInterval(fadeInInterval2);
                         }

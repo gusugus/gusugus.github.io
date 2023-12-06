@@ -37,6 +37,7 @@ var preguntas2 = [
                                             "<div><a  target='_blank' href='http://tesla.us.es/wiki/index.php/Ciclo_Brayton'>Enlace(Español) </a> </div>"
             },
 
+            /*
             //p3
             {
                 pregunta: "¿Cuál de las opciones representa de mejor manera la relación presión – volumen en la combustión?",
@@ -103,7 +104,7 @@ var preguntas2 = [
                                             "<div><a  target='_blank' href='https://www.thermal-engineering.org/es/que-es-el-ciclo-de-brayton-procesos-ecuaciones-definicion/'>Enlace(Español) </a> </div>"
             }
 
-
+*/
         ]
     }
 ];

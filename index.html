@@ -96,8 +96,13 @@
         var temaActual = 1; // Tema actual
         var intentos = 0; // Contador de intentos
         var temas = [];
-        var imaaa;
         var opcionesRespuesta;
+        var tituloTemas = ["Compresor","Calentamiento","Turbina","Enfriamiento"];
+        var tipsTemas = [   "",
+                            "Realice antes Compresor",
+                            "Realice antes Calentamiento",
+                            "Realice antes Turbina"];
+      
 
         $(document).ready(function() { 
             currentQuestion=0;
@@ -128,6 +133,7 @@
         temas = temas.concat(preguntas2);
         temas = temas.concat(preguntas3);
         temas = temas.concat(preguntas4);
+        var rptas = {};
         
 
         var modalContainer;
@@ -270,7 +276,7 @@
             
         }
 
-        var rptas = {};
+        
 
         /**
          * Funcion que califica las respuestas
@@ -287,7 +293,8 @@
                 {
 
                     // Respuesta Correcta
-                    rptas[temaIndex + ";" + currentQuestion] = 1;
+                    // V2: Se añade el tema por motivos de que no hay Score, sino hasta el final
+                    rptas[temaActual + ";" + currentQuestion] = 1;
                     currentQuestion++;
                     if (currentQuestion < temas[temaIndex].preguntas.length) {
                         intentos = 0; // Reiniciar los intentos
@@ -299,12 +306,12 @@
                                                
                         
                     } else {
-                        enableNextTemaButton(tema);
+                        //enableNextTemaButton(tema);
                     }
                 } else 
                 {
                     // Respuesta Incorrecta
-                    rptas[temaIndex + ";" + currentQuestion] = 0;
+                    rptas[temaActual + ";" + currentQuestion] = 0;
                     intentos++;
                     if (intentos < 2) 
                     {
@@ -333,7 +340,7 @@
                                     createTemaModal(tema);
                                 }
                                 else {
-                                    enableNextTemaButton(tema);
+                                    //enableNextTemaButton(tema);
                                 }
                             });
                             $("#modal-footer").html(`
@@ -352,7 +359,7 @@
                               }).then((result) =>
 
                               {
-                                EscribirScore(tema, temaIndex);
+                                EscribirFinTema(tema, temaIndex);
                               });
                         }
 
@@ -371,7 +378,7 @@
                 if (rpta.toString() == respCorrecta.toString()) 
                 {
                     // Respuesta Correcta
-                    rptas[temaIndex + ";" + currentQuestion-1] = 1;
+                    rptas[temaActual + ";" + currentQuestion-1] = 1;
                     Swal.fire({
                                 title: "Respuesta Correcta",
                                 text: "Correcto.", //Se mostrara el score
@@ -379,7 +386,7 @@
                               }).then((result) =>
 
                               {
-                                EscribirScore(tema, temaIndex);
+                                EscribirFinTema(tema, temaIndex);
                               });
                 }
 
@@ -387,8 +394,82 @@
             }
         }
 
-        function EscribirScore(tema, temaIndex)
+        function EscribirFinTema(tema, temaIndex)
         {
+            console.log(tema);
+            if(currentQuestion >= temas[temaIndex].preguntas.length && tema == temas.length)
+            {
+                let scoresTotales = "";
+                let scoreDiv = `
+                <div>
+                    <h3> :Titulo </h3>
+                    <h5> :Score </h5>
+                </div>
+                `;
+                for(let i = 1 ; i<=temas.length; i++)
+                {
+                    let res = getResultsByTema(i);
+                    let tit = tituloTemas[i-1];
+                    scoresTotales += scoreDiv.replaceAll(":Titulo",tit).replaceAll(":Score",res);
+                }
+                const resultadoModal = $('<div>', {
+                    class: 'modal',
+                    id: 'resultadoModal'
+                }).html(`
+                <div class="centrar modal_margen ">
+                    <a href="#close-modal" rel="modal:close" class="close" data-dismiss="modal" aria-label="Close" data-bs-target="#myModal">
+                        <span aria-hidden="true" style="color:black;">&times;</span>
+                    </a>
+                    <div class="centrar_pantalla">
+                        <div class="resultados centrar centrar_vertical">
+                                <h2 class="titulo-res">Scores Totales</h2>
+                                ${scoresTotales}
+                                <button href="#close-modal" rel="modal:close" class="btn" data-dismiss="modal" aria-label="Close" data-bs-target="#myModal">
+                                        Siguiente Etapa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                `);
+                modalContainer.empty();
+                modalContainer.append(resultadoModal);
+                resultadoModal.modal();
+            }
+            else
+            {
+                let tituloTema = tituloTemas[tema-1];
+                const resultadoModal = $('<div>', {
+                    class: 'modal',
+                    id: 'resultadoModal'
+                }).html(`
+                <div class="centrar modal_margen ">
+                    <a href="#close-modal" rel="modal:close" class="close" data-dismiss="modal" aria-label="Close" data-bs-target="#myModal">
+                        <span aria-hidden="true" style="color:black;">&times;</span>
+                    </a>
+                    <div class="centrar_pantalla">
+                        <div class="resultados centrar centrar_vertical">
+                                <h2 class="titulo-res">Acaba de terminar el tema ${tituloTema}</h2>
+                                <button href="#close-modal" rel="modal:close" class="btn" data-dismiss="modal" aria-label="Close" data-bs-target="#myModal">
+                                        Siguiente Etapa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                `);
+                modalContainer.empty();
+                modalContainer.append(resultadoModal);
+                resultadoModal.modal();
+            
+                enableNextTemaButton(tema);
+            }
+            
+        }
+
+        /**
+        @Depercated Sin score desde el 05 de Diciembre/2023
+        */
+        function EscribirScore(tema, temaIndex)
+        {            
             if(currentQuestion >= temas[temaIndex].preguntas.length) 
             {
 
@@ -483,7 +564,9 @@
             createTemaModal(temaActual);
         });
 
-        // Función para obtener los resultados del tema
+        /**
+        @Depercated Codigo eliminado junto con mostrar el score
+        */
         function getResults(tema) {
             const temaIndex = tema - 1;
             const temaPreguntas = temas[temaIndex].preguntas;
@@ -498,14 +581,61 @@
             return results;
         }
 
+
+
+        function getResultsByTema(temaTmp) {
+            const temaIndex = temaTmp - 1;
+            const temaPreguntas = temas[temaIndex].preguntas;
+            let total = 0;
+            let aciertos=0;
+            for (let i = 0; i < temaPreguntas.length; i++) {
+                let str = rptas[temaTmp + ";" + i];
+                //Depercated debido a que no debe haber score al final de cada tema
+                /*
+                results += `<div class="results-tema">Pregunta ${i + 1}: ${str == '1' ? '<span style="color:green;">&#10004;</span>' :
+                    '<span style="color:red;">&#10006;</span>'}</div>`;
+                */
+                if(str == '1')
+                {
+                    aciertos++;
+                }
+                total++;
+                
+            }
+            return Math.round( (aciertos/total)*100);
+        }
+
+        
+
         /*
         * Funcion que habilita el boton del siguiente tema
+        * V2: Solo se habilita el boton que continua, y el resto se deshabilita.
         */
         function enableNextTemaButton(temaIndex) 
         {
             temaActual=temaIndex+1;
             intentos=0;
 
+            for(let i=1;i<=temas.length;i++)
+            {
+                if(i<temaActual)
+                {
+                    $('#btnTema'+i).prop('disabled', true);
+                    $('#btnTema'+i).prop('title', "Score: "+getResultsByTema(i));
+                }
+                else if(temaActual==i)
+                {
+                    $('#btnTema'+i).prop('disabled', false);
+                    $('#btnTema'+i).prop('title', "");
+                }
+                else
+                {
+                    $('#btnTema'+i).prop('disabled', true);
+                    $('#btnTema'+i).prop('title', tipsTemas[i-1]);
+                }
+                
+            }
+            /*
             if (temaActual >= 2) {
                 $('#btnTema2').prop('disabled', false);
                 $('#btnTema2').prop('title', "");
@@ -518,6 +648,7 @@
                 $('#btnTema4').prop('disabled', false);
                 $('#btnTema4').prop('title', "");
             }
+            */
             
         }
 
@@ -579,13 +710,17 @@
             createTemaModal(4);
         });
 
-
+        /**
+        depercated
+        */
         function sgteTema(temaIndex)
         {
             currentQuestion = 0;
             createTemaModal(temaIndex+1);
         };
-
+        /**
+        depercated
+        */
         function repetirTema(temaIndex)
         {
             currentQuestion = 0;
@@ -616,54 +751,63 @@
         });
         
         // Función para escribir letra por letra
-        function escribirLetraPorLetra(nombreElemento, velocidad) {
-        let i = 0;
-        var elemento = document.getElementById(nombreElemento);
-        var texto = elemento.textContent;
-        if(typeof (document.getElementById("opcionesRespuesta")) !== "undefined" )
+        function escribirLetraPorLetra(nombreElemento, velocidad) 
         {
-            document.getElementById("opcionesRespuesta").style.opacity = 0;
-            document.getElementById("opcionesBotones").style.opacity = 0;
-        }        
-        
-        elemento.textContent = '';
-        opcionesRespuesta = $("#opcionesRespuesta");
-        const interval = setInterval(function()
-        {
-            elemento.textContent += texto.charAt(i);1
-            i++;
-            if (i > texto.length - 1) 
+            let i = 0;
+            if(typeof (document.getElementById("nombreElemento")) === "undefined" && typeof document.getElementById("nombreElemento") !== null )
             {
-                clearInterval(interval);
-                //Opacidad en 1 seg de opcionees de respuesta
-                let opacity = 0;
-                const fadeInInterval = setInterval(function() {
-                    if (opacity < 1) {
-                    opacity += 0.1;
-                        if(typeof(document.getElementById("opcionesRespuesta"))!=="undefined")
-                            document.getElementById("opcionesRespuesta").style.opacity = opacity;
-                    } else {
-                    clearInterval(fadeInInterval);
-                        //Opacidad de Botones
-                        let opacity2 = 0;
-                        const fadeInInterval2 = setInterval(function() {
-                        if (opacity2 < 1) 
-                        {
-                            opacity2 += 0.1;
-                            if(typeof(document.getElementById("opcionesBotones"))!=="undefined")
-                                document.getElementById("opcionesBotones").style.opacity = opacity2;
-                        } else {
-                        clearInterval(fadeInInterval2);
-                        }
-                    }, velocidad); // Velocidad para la animación
-                    }
-                }, velocidad); // Velocidad para la animación
+                return ;
+            }
+            var elemento = document.getElementById(nombreElemento);
+            var texto = elemento.textContent;
+            if(typeof (document.getElementById("opcionesRespuesta")) !== "undefined" && document.getElementById("opcionesRespuesta")!== null)
+            {
+                document.getElementById("opcionesRespuesta").style.opacity = 0;
+                document.getElementById("opcionesBotones").style.opacity = 0;
             }
             else
+           {
+            return ;
+           }     
+            
+            elemento.textContent = '';
+            opcionesRespuesta = $("#opcionesRespuesta");
+            const interval = setInterval(function()
             {
-                
-            }
-        }, velocidad);
+                elemento.textContent += texto.charAt(i);1
+                i++;
+                if (i > texto.length - 1) 
+                {
+                    clearInterval(interval);
+                    //Opacidad en 1 seg de opcionees de respuesta
+                    let opacity = 0;
+                    const fadeInInterval = setInterval(function() {
+                        if (opacity < 1) {
+                        opacity += 0.1;
+                            if(typeof(document.getElementById("opcionesRespuesta"))!=="undefined" && document.getElementById("opcionesRespuesta")!==null)
+                                document.getElementById("opcionesRespuesta").style.opacity = opacity;
+                        } else {
+                        clearInterval(fadeInInterval);
+                            //Opacidad de Botones
+                            let opacity2 = 0;
+                            const fadeInInterval2 = setInterval(function() {
+                            if (opacity2 < 1) 
+                            {
+                                opacity2 += 0.1;
+                                if(typeof(document.getElementById("opcionesBotones"))!=="undefined" && document.getElementById("opcionesBotones")!==null)
+                                    document.getElementById("opcionesBotones").style.opacity = opacity2;
+                            } else {
+                            clearInterval(fadeInInterval2);
+                            }
+                        }, velocidad); // Velocidad para la animación
+                        }
+                    }, velocidad); // Velocidad para la animación
+                }
+                else
+                {
+                    
+                }
+            }, velocidad);
         }
 
     </script>

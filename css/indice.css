@@ -23,6 +23,20 @@ body
     text-align: center;
 }
 
+.centrar_pantalla
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.bloque
+{
+    display: block;
+    height: 100%;
+}
+
 .contenedor
 {
     display:block;

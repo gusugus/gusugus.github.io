@@ -52,7 +52,7 @@ var preguntas1 = [
                                             "<div><a target='_blank' href='https://www.thermal-engineering.org/es/que-es-el-ciclo-de-brayton-procesos-ecuaciones-definicion/'>Enlace (español) </a></div>"
             },
 
-
+/*
 //p4
             {
                 pregunta: "¿Cuál de las opciones representa de mejor manera la relación presión – volumen en la compresión?",
@@ -119,7 +119,7 @@ var preguntas1 = [
                                             "<div><a  target='_blank' href='https://www.buildingengines.com/blog/knowledge-superheat-and-subcooling/'> Enlace(Inglés) </a> </div>"+
                                             "<div><a  target='_blank' href='https://areacooling.com/areacademy/es/sobrecalentamiento-y-subenfriamiento/'> Enlace(Español) </a> </div>"
             },
-
+*/
           
   
         ]
